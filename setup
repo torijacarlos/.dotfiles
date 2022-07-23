@@ -42,7 +42,7 @@ sudo apt-get install stow fzf ack tig tmux neovim terraform -y
 # Set .dotfiles 
 
 echo "=== .dotfiles"
-for folder in zsh
+for folder in zsh nvim
 do
     echo "stow $folder"
     stow -D $folder
