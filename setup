@@ -50,19 +50,28 @@ else
     echo "====== zsh already installed in $(which zsh)"
 fi
 
-
 # Install utilities
 
 echo "=== Utilities"
-sudo apt-get install stow fzf ack tig tmux neovim terraform -y
+sudo apt-get install stow fzf ack tig tmux neovim terraform fonts-powerline -y
 
 # Set .dotfiles 
 
 echo "=== .dotfiles"
-for folder in zsh nvim
+for folder in zsh nvim tmux
 do
     echo "stow $folder"
     stow -D $folder
     stow $folder
 done
+
+# Setup TMUX
+
+echo "=== TMUX"
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "====== Downloading tpm"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+echo "====== Loading tmux conf"
+tmux source $HOME/.tmux.conf
 
