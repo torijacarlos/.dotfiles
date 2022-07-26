@@ -25,6 +25,14 @@ vim.cmd([[
   augroup end
 ]])
 
+--- Autoformat files on save
+vim.cmd([[
+  augroup TORIJACARLOS
+    autocmd!
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+  augroup end
+]])
+
 --- startup and add configure plugins
 packer.startup(function()
     local use = use
@@ -33,6 +41,8 @@ packer.startup(function()
     use 'EdenEast/nightfox.nvim'
     use 'nvim-treesitter/nvim-treesitter'
     use 'sheerun/vim-polyglot'
+
+    use 'neovim/nvim-lspconfig'
 
     use {
         "kylechui/nvim-surround",
@@ -47,10 +57,6 @@ packer.startup(function()
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    use {
-        'neoclide/coc.nvim', 
-        branch = 'release'
-    }
 end)
 
 require("telescope").setup({

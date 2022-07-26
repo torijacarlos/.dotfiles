@@ -55,6 +55,11 @@ fi
 echo "=== Utilities"
 sudo apt-get install stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline -y
 
+# Install LSPs
+
+echo "=== LSPs"
+sudo apt-get install terraform-ls -y
+
 # Set .dotfiles 
 
 echo "=== .dotfiles"
