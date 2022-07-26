@@ -35,55 +35,26 @@ vim.cmd([[
 
 --- startup and add configure plugins
 packer.startup(function()
-    local use = use
+    use('wbthomason/packer.nvim')
+    use('EdenEast/nightfox.nvim')
 
-    use 'wbthomason/packer.nvim'
-    use 'EdenEast/nightfox.nvim'
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'sheerun/vim-polyglot'
+    use("nvim-treesitter/nvim-treesitter", {
+        run = ":TSUpdate"
+    })
 
-    use 'neovim/nvim-lspconfig'
+    use('neovim/nvim-lspconfig')
 
-    use {
+    use({
         "kylechui/nvim-surround",
         config = function()
             require("nvim-surround").setup({})
         end
-    }
+    })
 
-    use {
+    use({
         'nvim-telescope/telescope.nvim', 
         tag = '0.1.0',
         requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
+    })
 end)
-
-require("telescope").setup({
-    defaults = { 
-        file_ignore_patterns = {'node_modules', '.git', 'package-lock.json'},
-        vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--no-heading',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
-            '-uu'
-        }
-    },
-    pickers = {
-        find_files = {
-            hidden = true,
-        }
-    }
-})
-
-require("nightfox").setup({
-    options = {
-        transparent = false
-    }
-})
-vim.cmd("colorscheme duskfox")
 
