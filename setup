@@ -59,6 +59,7 @@ sudo apt-get install stow fzf ripgrep ack tig tmux neovim terraform fonts-powerl
 
 echo "=== LSPs"
 sudo apt-get install terraform-ls -y
+npm install -g typescript-language-server typescript
 
 # Set .dotfiles 
 
