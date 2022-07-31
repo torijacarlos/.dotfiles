@@ -53,7 +53,7 @@ fi
 # Install utilities
 
 echo "=== Utilities"
-sudo apt-get install stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline -y
+sudo apt-get install stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline fuck -y
 
 # Install LSPs
 
