@@ -39,6 +39,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 packer.startup(function()
     use('wbthomason/packer.nvim')
     use('EdenEast/nightfox.nvim')
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
 
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"
