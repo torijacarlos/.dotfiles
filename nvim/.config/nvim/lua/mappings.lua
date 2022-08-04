@@ -1,23 +1,17 @@
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
 -- Buffers
-map("n", "<leader>[", "<cmd>bp<cr>")
-map("n", "<leader>]", "<cmd>bn<cr>")
+vim.keymap.set("n", "<leader>[", "<cmd>bp<cr>", bufopts)
+vim.keymap.set("n", "<leader>]", "<cmd>bn<cr>", bufopts)
 
 -- Telescope
-map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>")
-map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>")
+vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", bufopts)
+vim.keymap.set("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", bufopts)
 
 -- Autocompletes
-map("i", "(", "()<esc>i")
-map("i", "{", "{}<esc>i")
-map("i", "[", "[]<esc>i")
-map("i", "<", "<><esc>i")
-map("i", "'", "''<esc>i")
-map("i", "\"", "\"\"<esc>i")
+vim.keymap.set("i", "(", "()<esc>i", bufopts)
+vim.keymap.set("i", "{", "{}<esc>i", bufopts)
+vim.keymap.set("i", "[", "[]<esc>i", bufopts)
+vim.keymap.set("i", "<", "<><esc>i", bufopts)
+vim.keymap.set("i", "'", "''<esc>i", bufopts)
+vim.keymap.set("i", "\"", "\"\"<esc>i", bufopts)
