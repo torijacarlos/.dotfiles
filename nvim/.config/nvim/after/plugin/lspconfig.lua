@@ -39,10 +39,10 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }), 
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' },
+        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'vsnip', keyword_length = 3 },
     }, {
-        { name = 'buffer' },
+        { name = 'buffer', keyword_length = 3 },
     })
 })
 
@@ -50,7 +50,7 @@ cmp.setup({
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
+        { name = 'buffer', keyword_length = 3 }
     }
 })
 
@@ -58,9 +58,9 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = 'path', keyword_length = 3 }
     }, {
-        { name = 'cmdline' }
+        { name = 'cmdline', keyword_length = 3 }
     })
 })
 
@@ -79,3 +79,12 @@ require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("torijacarlos_autofmt", { clear = true }),
+    pattern = { "*.js" },
+    callback = function()
+        vim.lsp.buf.formatting_sync()
+    end
+})
