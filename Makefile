@@ -42,7 +42,7 @@ pkg-setup:
 	@sudo apt-get update;
 	@sudo apt-get install -y gnupg software-properties-common curl;
 	@echo "====== Utilities";
-	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline;
+	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline jq;
 	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
 	@pip3 install thefuck --user;
 	@echo "====== LSPs";
