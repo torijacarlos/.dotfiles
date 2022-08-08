@@ -26,15 +26,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end,
 })
 
---- Autoformat files on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("torijacarlos", { clear = true }),
-    pattern = { "*.js" },
-    callback = function()
-        vim.lsp.buf.formatting_sync()
-    end
-})
-
 --- startup and add configure plugins
 packer.startup(function()
     use('wbthomason/packer.nvim')
