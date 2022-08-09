@@ -1,0 +1,35 @@
+#!/bin/bash
+
+selected=$(find ~/develop/ -mindepth 2 -maxdepth 2 -type d | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+
+function create_tmux_session {
+    tmux new-session -ds $selected_name -c $selected -n Vim;
+    tmux send-keys -t $selected_name:Vim "v" Enter
+    tmux new-window -t $selected_name -c $selected -n Utilities
+    tmux split-window -v -t $selected_name:Utilities -c $selected
+    tmux split-window -h -t $selected_name:Utilities -c $selected
+    tmux select-layout -t $selected_name:Utilities main-vertical 
+    tmux select-window -t $selected_name:Vim
+}
+
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    echo "Creating session for $selected_name"
+    read
+    create_tmux_session
+fi
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "Session for $selected_name was created or already existed"
+else
+    tmux attach -t $selected_name
+fi
+

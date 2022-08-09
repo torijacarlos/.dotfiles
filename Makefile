@@ -16,7 +16,7 @@ dotfiles-setup:
 			echo "You haven't run make pkg-setup. Please do first"; \
 			exit 1; \
 		else \
-			for folder in zsh nvim tmux; do \
+			for folder in zsh nvim tmux bin; do \
 				echo "====== stow $$folder"; \
 				stow -D $$folder;\
 				stow $$folder; \
