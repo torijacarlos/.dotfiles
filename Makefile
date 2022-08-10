@@ -47,7 +47,7 @@ pkg-setup:
 	@pip3 install thefuck --user;
 	@echo "====== LSPs";
 	@sudo apt-get install -y terraform-ls;
-	@npm install -g typescript-language-server typescript;
+	@npm install -g typescript-language-server typescript pyright;
 
 
 zsh-setup:
