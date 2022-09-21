@@ -46,7 +46,7 @@ pkg-setup:
 	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
 	@pip3 install thefuck --user;
 	@echo "====== LSPs";
-	@sudo apt-get install -y terraform-ls;
+	@sudo apt-get install -y clangd terraform-ls;
 	@npm install -g typescript-language-server typescript pyright;
 
 

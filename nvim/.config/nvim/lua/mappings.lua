@@ -12,6 +12,15 @@ vim.keymap.set("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()
 vim.keymap.set("i", "(", "()<esc>i", bufopts)
 vim.keymap.set("i", "{", "{}<esc>i", bufopts)
 vim.keymap.set("i", "[", "[]<esc>i", bufopts)
-vim.keymap.set("i", "<", "<><esc>i", bufopts)
 vim.keymap.set("i", "'", "''<esc>i", bufopts)
 vim.keymap.set("i", "\"", "\"\"<esc>i", bufopts)
+
+
+--- Only Html
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("html-braces", { clear = true }),
+    pattern = { "html" },
+    callback = function()
+        vim.keymap.set("i", "<", "<><esc>i", bufopts)
+    end
+})

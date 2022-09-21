@@ -80,6 +80,13 @@ require('lspconfig')['tsserver'].setup{
     flags = lsp_flags,
 }
 
+require('lspconfig')['clangd'].setup{
+    cmd = { "clangd", "--query-driver=/usr/bin/x86_64-w64-mingw32-*,/usr/bin/*-g++"},
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
 require('lspconfig')['pyright'].setup{
     capabilities = capabilities,
     on_attach = on_attach,
