@@ -44,6 +44,7 @@ pkg-setup:
 	@echo "====== Utilities";
 	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline jq;
 	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
+	@sudo apt-get install -y golang;
 	@pip3 install thefuck --user;
 	@echo "====== LSPs";
 	@sudo apt-get install -y clangd terraform-ls;
