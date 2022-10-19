@@ -17,6 +17,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 alias gca="git commit --amend --no-edit"
 alias gbv="git branch -v"
+alias gfi="gaa && gca"
 
 ## vim aliases
 
