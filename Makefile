@@ -42,12 +42,17 @@ pkg-setup:
 	@sudo apt-get update;
 	@sudo apt-get install -y gnupg software-properties-common curl;
 	@echo "====== Utilities";
-	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim terraform fonts-powerline jq;
+	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim fonts-powerline jq;
 	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
 	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
 	@sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
+	@( \
+		if  [ -z $(shell which nvm) ]; then \
+			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash; \
+		fi; \
+	)
 	@echo "====== LSPs";
-	@sudo apt-get install -y clangd terraform-ls;
+	@sudo apt-get install -y clangd;
 	@npm install -g typescript-language-server typescript pyright;
 	@mkdir -p ~/.local/bin
 	@curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
@@ -60,8 +65,7 @@ zsh-setup:
 		if [ -z $(shell which zsh) ]; then \
 			echo "====== Installing zsh"; \
 			sudo apt-get install zsh -y; \
-			curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | \
-				sudo bash; \
+			sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
 			chsh -s $(shell which zsh) $(shell whoami); \
 		else \
 			echo "====== zsh already installed in $(shell which zsh)"; \
@@ -79,6 +83,7 @@ tf-setup:
 			echo "====== tfswitch already installed in $(which tfswitch)"; \
 		fi \
 	)
+	@sudo tfswitch --latest
 
 check-os:
 	@echo "=== What are we working on?"
