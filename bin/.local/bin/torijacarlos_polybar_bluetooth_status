@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Source: msaitz/polybar-bluetooth
+
+if [ $(bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0 ]
+then
+  echo "%{F#7C7C7C}"
+else
+  echo "%{F#95aec7}"
+fi

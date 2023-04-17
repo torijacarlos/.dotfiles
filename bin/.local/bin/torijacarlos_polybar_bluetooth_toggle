@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Source: msaitz/polybar-bluetooth
+
+if [ $(bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0 ]
+then
+  bluetoothctl power on
+  bluetoothctl connect $(bluetoothctl devices | rg WH | awk '{ print $2 }')
+else
+  bluetoothctl power off
+fi

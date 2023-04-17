@@ -83,8 +83,6 @@ bindsym $mod+Shift+l move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -138,5 +136,6 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 bindsym $mod+u split toggle
+bindsym $mod+s exec maim -s | xclip -selection clipboard -t image/png
 
 exec_always --no-startup-id nitrogen --restore
