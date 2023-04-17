@@ -6,6 +6,7 @@ MACOS_PACKAGES=
 FEDORA_PACKAGES=gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom 
 
 GLOBAL_PACKAGES=alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
+		lutris wine steam \
 		tldr xclip google-chrome openssl openssl-devel \
 		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
 		tableplus mycli postgresql discord fd-find
@@ -43,7 +44,7 @@ rust:
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 
 rust-toolchain:
-	@cargo install cargo-watch cargo-audit cargo-asm
+	@cargo install cargo-watch cargo-audit cargo-asm cargo-license 
 	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres
 
 dotfiles-setup: 
