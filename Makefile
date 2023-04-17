@@ -3,13 +3,11 @@ LSB_RELEASE=$(shell lsb_release -cs)
 
 
 MACOS_PACKAGES=
-FEDORA_PACKAGES=gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom 
-
-GLOBAL_PACKAGES=alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
-		lutris wine steam \
-		tldr xclip google-chrome openssl openssl-devel \
+FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom alacritty \
 		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
-		tableplus mycli postgresql discord fd-find
+		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find
+
+GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
@@ -21,6 +19,9 @@ setup:
 clean-fedora:
 	# This one should completely go once I make an image from fedora server edition
 	@sudo dnf remove firefox konsole;
+
+pkg-mac:
+	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
 
 pkg-setup:
 	@sudo dnf -y update;
@@ -76,14 +77,11 @@ tmux-setup:
 zsh-setup:
 	@echo "=== ZSH";
 	@( \
-		if [ -z $(shell which zsh) ]; then \
-			echo "====== Installing zsh"; \
-			sudo apt-get install zsh -y; \
+		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
+			echo "=== Oh my zsh"; \
 			sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
 			chsh -s $(shell which zsh) $(shell whoami); \
-		else \
-			echo "====== zsh already installed in $(shell which zsh)"; \
-		fi \
+		fi; \
 	)
 
 
