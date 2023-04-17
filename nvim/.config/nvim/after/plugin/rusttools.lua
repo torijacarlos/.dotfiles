@@ -19,7 +19,7 @@ rt.setup({
 
       vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+      vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
     end,
   },
 })
