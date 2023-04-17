@@ -16,7 +16,8 @@ fedora:
 		sudo dnf install -y gtk3 webkit2gtk3 libusb \
 			alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
 			i3 picom rofi nitrogen polybar autorandr \
-			google-chrome \
+			google-chrome openssl openssl-devel \
+			discord \
 	)
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
