@@ -5,6 +5,7 @@ clean-fedora:
 	@sudo dnf remove firefox konsole;
 
 fedora:
+	@sudo dnf update;
 	@sudo dnf config-manager --set-enabled google-chrome;
 	@( \
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm \

@@ -5,7 +5,8 @@
 
     foreground: #DEDEDEFF;
     light-foreground: #A0A0A0FF;
-    background: #3C3C3C55;
+
+    background: #3C3C3CCC; 
     background-color: #00000000;
 
     active-foreground: @foreground;
@@ -19,8 +20,8 @@
     alternate-urgent-foreground: @foreground;
 
     active-background: @accent;
-    normal-background: #1C1C1C00;
-    urgent-background: #8C8C8C00;
+    normal-background: #1C1C1C55;
+    urgent-background: #8C8C8C55;
     selected-active-background: @accent;
     selected-normal-background: @accent;
     selected-urgent-background: @accent;
@@ -50,7 +51,7 @@ message {
 
 textbox {
     text-color: @light-foreground;
-    padding: 8px 24px;
+    padding: 0;
 }
 
 listview {
@@ -61,14 +62,16 @@ listview {
     lines: 5;
     padding: 0;
     scrollbar: false;
-    spacing: @spacing;
+    spacing: 0;
 }
+
 element {
     border: 0;
     padding: @spacing;
     spacing: @spacing;
     background-color: @accent;
 }
+
 element.normal.normal {
     background-color: @normal-background;
     text-color: @normal-foreground;
@@ -105,45 +108,41 @@ element.alternate.active {
     background-color: @alternate-active-background;
     text-color: @alternate-active-foreground;
 }
-scrollbar {
-    width: 4px ;
-    border: 0;
-    handle-color: @normal-foreground;
-    handle-width: 8px ;
-    padding: 0;
-}
-sidebar {
-    border: 2px 0px 0px ;
-    border-color: @accent;
-}
+
 button {
     spacing: 0;
     text-color: @normal-foreground;
 }
+
 button.selected {
     background-color: @selected-normal-background;
     text-color: @selected-normal-foreground;
 }
+
 inputbar {
     children: [ icon-search, entry ];
     padding: 12px;
     spacing: @spacing;
     text-color: @normal-foreground;
 }
+
 case-indicator {
     spacing: 0;
     text-color: @normal-foreground;
 }
+
 entry {
-    spacing: @spacing;
+    spacing: 0;
     text-color: @normal-foreground;
-    placeholder : "Search";
-    placeholder-color   : @foreground;
+    placeholder: "Search";
+    placeholder-color: @foreground;
 }
+
 prompt {
     spacing: 0;
     text-color: @normal-foreground;
 }
+
 textbox-prompt-colon {
     expand: false;
     str: ":";
