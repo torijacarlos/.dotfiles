@@ -1,0 +1,15 @@
+bin/.local/share/*
+bin/.local/state/*
+bin/.local/links/*
+bin/.local/.atelier/*
+rust-analyzer
+
+# python global stuff
+bin/.local/**/pip*
+bin/.local/lib/python*
+bin/.local/bin/pylsp*
+bin/.local/bin/nodeenv
+
+# personal builds
+bin/.local/rust/*
+yay-explicit-installs
