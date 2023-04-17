@@ -1,6 +1,16 @@
 SHELL=/bin/bash
 LSB_RELEASE=$(shell lsb_release -cs)
 
+fedora:
+	@sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm;
+	@sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm;
+	@sudo dnf install fedora-workstation-repositories;
+	@sudo dnf config-manager --set-enabled google-chrome;
+	@sudo dnf install -y google-chrome;
+	@sudo dnf install gtk3 webkit2gtk3 libusb;
+	@sudo dnf install -y alacritty zsh g++ stow fzf neovim ripgrep tig tmux;
+	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
+
 
 setup: check-os
 	@echo "Welcome $(shell whoami)!, Let's setup";
