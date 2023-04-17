@@ -23,3 +23,4 @@ vim.bo.wrapmargin = 100
 
 require('mappings')
 require('plugins')
+require('indentation')
