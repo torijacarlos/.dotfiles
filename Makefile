@@ -32,7 +32,7 @@ pkg-setup:
 			i3 picom rofi nitrogen polybar autorandr playerctl tldr maim xclip \
 			google-chrome openssl openssl-devel \
 			docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
-			tableplus mycli postgresql discord \
+			tableplus mycli postgresql discord fd-find \
 	)
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
