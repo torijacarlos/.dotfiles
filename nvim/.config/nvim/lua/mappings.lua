@@ -7,3 +7,4 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>")
+map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>")

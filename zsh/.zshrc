@@ -9,7 +9,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+## vim aliases
 alias vim="nvim"
+
+## tmux aliases
+
+alias tw="tmux"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
