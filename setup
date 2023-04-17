@@ -7,7 +7,7 @@ echo "Welcome torija!, Let's setup"
 echo "=== What are we working on?"
 if [ -f "/etc/os-release" ]; then
     . /etc/os-release
-    if [ "$PRETTY_NAME" = "Ubuntu 20.04.4 LTS" ]; then
+    if [ "$NAME" = "Ubuntu" ] && grep -q "20.04" <<< "$VERSION"; then
         echo "====== Let's start installing everying for $NAME:$VERSION"
     else
         echo "====== We have no setup instructions for this place"
