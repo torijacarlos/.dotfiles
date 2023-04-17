@@ -1,6 +1,8 @@
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
 -- Buffers
+vim.keymap.set("n", "<leader>o", "<cmd>bp<cr>", bufopts)
+vim.keymap.set("n", "<leader>p", "<cmd>bn<cr>", bufopts)
 vim.keymap.set("n", "<leader>[", "<cmd>bp<cr>", bufopts)
 vim.keymap.set("n", "<leader>]", "<cmd>bn<cr>", bufopts)
 
