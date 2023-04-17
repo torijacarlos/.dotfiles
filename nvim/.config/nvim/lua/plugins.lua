@@ -18,12 +18,13 @@ packer.init({
 })
 
 --- Update installed packages automatically
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("packer-compile", { clear = true }),
+    pattern = "plugins.lua",
+    callback = function()
+        vim.cmd("source % | PackerCompile")
+    end,
+})
 
 --- Autoformat files on save
 vim.api.nvim_create_autocmd("BufWritePre", {
