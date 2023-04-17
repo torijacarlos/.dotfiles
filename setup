@@ -4,7 +4,7 @@ echo "Welcome torija!, Let's setup"
 
 # Terraform setup
 
-if [[ -z $(which terraform) ]]; then
+if [[ $(which terraform) != "/usr/bin/terraform" ]]; then
     echo "=== Terraform key and repository"
     wget -O- https://apt.releases.hashicorp.com/gpg | \
         gpg --dearmor | \
@@ -24,7 +24,7 @@ sudo apt-get install curl -y
 
 echo "=== ZSH"
 
-if [[ -z $(which zsh) ]]; then
+if [[ $(which zsh) != "/usr/bin/zsh" ]]; then
     echo "====== Installing zsh"
     sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -42,12 +42,10 @@ sudo apt-get install stow fzf ack tig tmux neovim terraform -y
 # Set .dotfiles 
 
 echo "=== .dotfiles"
-pushd $HOME/.dotfiles
 for folder in zsh
 do
     echo "stow $folder"
     stow -D $folder
     stow $folder
 done
-popd
 
