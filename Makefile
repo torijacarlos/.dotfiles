@@ -5,11 +5,13 @@ LSB_RELEASE=$(shell lsb_release -cs)
 
 setup: check-os
 	@echo "Welcome $(shell whoami)!, Let's setup";
-	@make zsh-setup;
 	@make pkg-setup;
 	@make dotfiles-setup;
+	@make zsh-setup;
+	@make tmux-setup;
 
 clean-fedora:
+	# This one should completely go once I make an image from fedora server edition
 	@sudo dnf remove firefox konsole;
 
 pkg-setup:
@@ -25,7 +27,7 @@ pkg-setup:
 	@( \
 		sudo dnf install -y gtk3 webkit2gtk3 libusb \
 			alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
-			i3 picom rofi nitrogen polybar autorandr playerctl \
+			i3 picom rofi nitrogen polybar autorandr playerctl tldr \
 			google-chrome openssl openssl-devel \
 			docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
 			postgresql discord \
@@ -55,7 +57,7 @@ dotfiles-setup:
 		fi \
 	)
 
-tmux-setup: dotfiles-setup
+tmux-setup: 
 	@echo "=== TMUX";
 	@( \
 		if [ ! -d "$$HOME/.tmux/plugins/tpm" ]; then \
