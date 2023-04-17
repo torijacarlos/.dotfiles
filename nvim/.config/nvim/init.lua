@@ -17,6 +17,7 @@ vim.o.scrolloff = 8
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
+vim.wo.cursorlineopt = "line"
 
 vim.bo.autoindent = true
 vim.bo.smartindent = true
