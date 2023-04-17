@@ -9,6 +9,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+## expand PATH
+
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 ## git aliases
 
 alias gca="git commit --amend --no-edit"
@@ -39,3 +43,5 @@ wthr() {
         curl wttr.in/
     fi
 }
+
+eval $(thefuck --alias)
