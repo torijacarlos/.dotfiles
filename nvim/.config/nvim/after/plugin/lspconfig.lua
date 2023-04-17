@@ -80,11 +80,9 @@ require('lspconfig')['tsserver'].setup{
     flags = lsp_flags,
 }
 
+require('lspconfig')['pyright'].setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("torijacarlos_autofmt", { clear = true }),
-    pattern = { "*.js" },
-    callback = function()
-        vim.lsp.buf.formatting_sync()
-    end
-})
