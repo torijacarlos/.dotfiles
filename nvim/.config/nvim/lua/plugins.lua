@@ -48,6 +48,8 @@ packer.startup(function()
     use('hrsh7th/cmp-vsnip')
     use('hrsh7th/vim-vsnip')
 
+    use('simrat39/rust-tools.nvim')
+
     use({
         "kylechui/nvim-surround",
         config = function()
