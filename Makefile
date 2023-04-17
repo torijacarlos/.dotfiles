@@ -25,6 +25,9 @@ fedora:
 rust:
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 
+rust-toolchain:
+	@cargo install cargo-watch cargo-audit
+
 
 setup: check-os
 	@echo "Welcome $(shell whoami)!, Let's setup";
