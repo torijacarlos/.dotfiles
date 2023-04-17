@@ -1,6 +1,15 @@
 SHELL=/bin/bash
 LSB_RELEASE=$(shell lsb_release -cs)
 
+
+MACOS_PACKAGES=
+FEDORA_PACKAGES=gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom 
+
+GLOBAL_PACKAGES=alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
+		tldr xclip google-chrome openssl openssl-devel \
+		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+		tableplus mycli postgresql discord fd-find
+
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
 	@make pkg-setup;
@@ -26,14 +35,7 @@ pkg-setup:
 		sudo rpm -v --import https://yum.tableplus.com/apt.tableplus.com.gpg.key; \
 		sudo dnf config-manager --add-repo https://yum.tableplus.com/rpm/x86_64/tableplus.repo; \
 	)
-	@( \
-		sudo dnf install -y gtk3 webkit2gtk3 libusb \
-			alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
-			i3 picom rofi nitrogen polybar autorandr playerctl tldr maim xclip \
-			google-chrome openssl openssl-devel \
-			docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
-			tableplus mycli postgresql discord fd-find \
-	)
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(FEDORA_PACKAGES);
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
 
@@ -41,7 +43,7 @@ rust:
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 
 rust-toolchain:
-	@cargo install cargo-watch cargo-audit
+	@cargo install cargo-watch cargo-audit cargo-asm
 	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres
 
 dotfiles-setup: 
