@@ -1,12 +1,22 @@
 SHELL=/bin/bash
 LSB_RELEASE=$(shell lsb_release -cs)
 
+
+
+setup: check-os
+	@echo "Welcome $(shell whoami)!, Let's setup";
+	@make zsh-setup;
+	@make pkg-setup;
+	@make dotfiles-setup;
+
 clean-fedora:
 	@sudo dnf remove firefox konsole;
 
-fedora:
-	@sudo dnf update;
+pkg-setup:
+	@sudo dnf -y update;
 	@sudo dnf config-manager --set-enabled google-chrome;
+	@sudo dnf install -y dnf-plugins-core;
+	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 	@( \
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm \
 		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm \
@@ -15,9 +25,10 @@ fedora:
 	@( \
 		sudo dnf install -y gtk3 webkit2gtk3 libusb \
 			alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
-			i3 picom rofi nitrogen polybar autorandr \
+			i3 picom rofi nitrogen polybar autorandr playerctl \
 			google-chrome openssl openssl-devel \
-			discord \
+			docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+			postgresql discord \
 	)
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
@@ -27,14 +38,7 @@ rust:
 
 rust-toolchain:
 	@cargo install cargo-watch cargo-audit
-
-
-setup: check-os
-	@echo "Welcome $(shell whoami)!, Let's setup";
-	@make zsh-setup;
-	@make pkg-setup;
-	@make dotfiles-setup;
-
+	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres
 
 dotfiles-setup: 
 	@echo "=== .dotfiles";
@@ -62,30 +66,6 @@ tmux-setup: dotfiles-setup
 		tmux source $$HOME/.tmux.conf; \
 	)
 
-
-pkg-setup: 
-	@echo "=== Installing packages";
-	@sudo add-apt-repository ppa:neovim-ppa/stable -y;
-	@sudo apt-get update;
-	@sudo apt-get install -y gnupg software-properties-common curl;
-	@echo "====== Utilities";
-	@sudo apt-get install -y stow fzf ripgrep ack tig tmux neovim fonts-powerline jq;
-	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
-	@sudo apt-get install -y python3-dev python3-pip python3-setuptools;
-	@sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
-	@( \
-		if  [ -z $(shell which nvm) ]; then \
-			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash; \
-		fi; \
-	)
-	@echo "====== LSPs";
-	@sudo apt-get install -y clangd;
-	@npm install -g typescript-language-server typescript pyright;
-	@mkdir -p ~/.local/bin
-	@curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-	@chmod +x ~/.local/bin/rust-analyzer
-
-
 zsh-setup:
 	@echo "=== ZSH";
 	@( \
@@ -111,24 +91,6 @@ tf-setup:
 		fi \
 	)
 	@sudo tfswitch --latest
-
-check-os:
-	@echo "=== What are we working on?"
-	@( \
-		if [ -f "/etc/os-release" ]; then \
-			. /etc/os-release; \
-			if [ "$$NAME" = "Ubuntu" ] && grep -q "20.04" <<< "$$VERSION"; then \
-				echo "====== Let's start installing everying for $$NAME:$$VERSION"; \
-			else \
-				echo "====== We have no setup instructions for this place"; \
-				exit 0; \
-			fi \
-		else \
-			echo "No /etc/os-release found"; \
-			exit 0; \
-		fi \
-	)
-
 
 
 .PHONY: setup
