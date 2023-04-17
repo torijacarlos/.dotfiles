@@ -9,7 +9,7 @@ fedora:
 	@sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm;
 	@sudo dnf install fedora-workstation-repositories;
 	@sudo dnf config-manager --set-enabled google-chrome;
-	@sudo dnf install -y i3 picom nitrogen;
+	@sudo dnf install -y i3 picom rofi nitrogen;
 	@sudo dnf install -y google-chrome;
 	@sudo dnf install gtk3 webkit2gtk3 libusb;
 	@sudo dnf install -y alacritty zsh g++ stow fzf neovim ripgrep tig tmux;
@@ -34,7 +34,7 @@ dotfiles-setup:
 			echo "You haven't run make pkg-setup. Please do first"; \
 			exit 1; \
 		else \
-			for folder in i3 zsh alacritty nvim tmux bin; do \
+			for folder in i3 zsh alacritty rofi nvim tmux bin; do \
 				echo "====== stow $$folder"; \
 				stow -D $$folder;\
 				stow $$folder; \
