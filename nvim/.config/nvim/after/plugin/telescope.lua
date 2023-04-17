@@ -1,6 +1,6 @@
 require("telescope").setup({
     defaults = { 
-        file_ignore_patterns = {'node_modules', '.git', 'package-lock.json'},
+        file_ignore_patterns = {'node_modules', '.git', 'package-lock.json', '__pycache__', 'venv'},
         vimgrep_arguments = {
             'rg',
             '--color=never',
