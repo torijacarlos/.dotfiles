@@ -12,7 +12,7 @@ rt.setup({
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
       vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+      vim.keymap.set("n", "<space>r", vim.lsp.buf.rename, bufopts)
 
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
