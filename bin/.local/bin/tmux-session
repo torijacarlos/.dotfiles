@@ -14,10 +14,6 @@ function create_tmux_session {
     tmux new-session -ds $selected_name -c $selected -n Vim;
     tmux send-keys -t $selected_name:Vim "v" Enter
     tmux new-window -t $selected_name -c $selected -n Utilities
-    tmux split-window -v -t $selected_name:Utilities -c $selected
-    tmux split-window -h -t $selected_name:Utilities -c $selected
-    tmux select-layout -t $selected_name:Utilities main-vertical 
-    tmux resize-pane -L 20
     tmux select-window -t $selected_name:Vim
 }
 
