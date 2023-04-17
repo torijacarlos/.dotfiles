@@ -17,6 +17,7 @@ fi
 # Terraform setup
 
 echo "=== Updating packages"
+sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 sudo apt-get install curl -y
 
