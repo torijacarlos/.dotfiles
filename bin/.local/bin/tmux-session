@@ -17,12 +17,13 @@ function create_tmux_session {
     tmux split-window -v -t $selected_name:Utilities -c $selected
     tmux split-window -h -t $selected_name:Utilities -c $selected
     tmux select-layout -t $selected_name:Utilities main-vertical 
+    tmux resize-pane -L 20
     tmux select-window -t $selected_name:Vim
 }
 
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    echo "Creating session for $selected_name"
+    echo "Creating session for $selected_name [Press any key]"
     read
     create_tmux_session
 fi
