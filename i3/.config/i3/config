@@ -34,7 +34,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec_always --no-startup-id picom
+exec_always --no-startup-id picom --config $HOME/.config/picom.config
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id autorandr --change
 

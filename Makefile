@@ -54,7 +54,7 @@ dotfiles-setup:
 			echo "You haven't run make pkg-setup. Please do first"; \
 			exit 1; \
 		else \
-			for folder in i3 zsh alacritty rofi nvim tmux bin; do \
+			for folder in i3 zsh alacritty picom rofi nvim tmux bin; do \
 				echo "====== stow $$folder"; \
 				stow -D $$folder;\
 				stow $$folder; \
