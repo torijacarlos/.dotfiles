@@ -14,8 +14,8 @@ clean-fedora:
 
 pkg-setup:
 	@sudo dnf -y update;
-	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf install -y dnf-plugins-core;
+	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 	@( \
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm \
@@ -23,12 +23,16 @@ pkg-setup:
 		fedora-workstation-repositories; \
 	)
 	@( \
+		sudo rpm -v --import https://yum.tableplus.com/apt.tableplus.com.gpg.key; \
+		sudo dnf config-manager --add-repo https://yum.tableplus.com/rpm/x86_64/tableplus.repo; \
+	)
+	@( \
 		sudo dnf install -y gtk3 webkit2gtk3 libusb \
 			alacritty zsh g++ stow fzf neovim ripgrep tig tmux \
 			i3 picom rofi nitrogen polybar autorandr playerctl tldr maim xclip \
 			google-chrome openssl openssl-devel \
 			docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
-			postgresql discord \
+			tableplus mycli postgresql discord \
 	)
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
