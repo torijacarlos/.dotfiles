@@ -3,6 +3,8 @@ vim.go.wildmode = 'lastused,longest,list'
 vim.opt.colorcolumn = "120"
 vim.opt.signcolumn = "yes"
 
+
+vim.o.clipboard = 'unnamedplus'
 vim.o.expandtab = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true
