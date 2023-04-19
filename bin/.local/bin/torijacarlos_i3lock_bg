@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Source: https://github.com/i3/i3lock/issues/81#issuecomment-999721698
+
+SCREEN_RESOLUTION="$(xdpyinfo | grep dimensions | cut -d' ' -f7)"
+BGCOLOR="333333"
+convert "/home/torijacarlos/lockscreen.png" -gravity Center -background $BGCOLOR -extent "$SCREEN_RESOLUTION" RGB:- | i3lock --raw "$SCREEN_RESOLUTION":rgb -c $BGCOLOR -i /dev/stdin
+
