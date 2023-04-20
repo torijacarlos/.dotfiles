@@ -5,7 +5,7 @@ LSB_RELEASE=$(shell lsb_release -cs)
 MACOS_PACKAGES=
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom alacritty \
 		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
-		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find
+		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find ffmpeg
 
 GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 
