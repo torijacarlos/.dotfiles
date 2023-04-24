@@ -28,6 +28,7 @@ alias v="nvim"
 ## tmux aliases
 
 alias tw="tmux-session"
+alias twl="tmux-session -l"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform

@@ -1,6 +1,18 @@
 #!/bin/bash
 
-selected=$(find ~/develop/ -mindepth 2 -maxdepth 2 -type d | fzf)
+FOLDER=~/develop
+DEPTH=2
+
+while getopts ":l" o; do 
+    case "${o}" in 
+        l)
+            FOLDER=~/src
+            DEPTH=1
+            ;;
+    esac
+done
+
+selected=$(find $FOLDER -mindepth $DEPTH -maxdepth $DEPTH -type d | fzf)
 
 if [[ -z $selected ]]; then
     exit 0
