@@ -4,7 +4,7 @@ LSB_RELEASE=$(shell lsb_release -cs)
 
 MACOS_PACKAGES=
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom alacritty \
-		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nautilus \
 		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find ffmpeg
 
 GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
@@ -18,7 +18,7 @@ setup:
 
 clean-fedora:
 	# This one should completely go once I make an image from fedora server edition
-	@sudo dnf remove firefox konsole;
+	@sudo dnf remove firefox konsole dolphin;
 
 pkg-mac:
 	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
@@ -38,6 +38,7 @@ pkg-setup:
 		sudo dnf config-manager --add-repo https://yum.tableplus.com/rpm/x86_64/tableplus.repo; \
 	)
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(FEDORA_PACKAGES);
+	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 	@echo "LSP"
 	@sudo dnf install -y rust-analyzer;
 
