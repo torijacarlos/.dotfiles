@@ -4,5 +4,5 @@
 
 SCREEN_RESOLUTION="$(xdpyinfo | grep dimensions | cut -d' ' -f7)"
 BGCOLOR="333333"
-convert "/home/torijacarlos/lockscreen.png" -gravity Center -background $BGCOLOR -extent "$SCREEN_RESOLUTION" RGB:- | i3lock --raw "$SCREEN_RESOLUTION":rgb -c $BGCOLOR -i /dev/stdin
+convert "$HOME/.dotfiles/assets/lockscreen.png" -gravity Center -background $BGCOLOR -extent "$SCREEN_RESOLUTION" RGB:- | i3lock --raw "$SCREEN_RESOLUTION":rgb -c $BGCOLOR -i /dev/stdin
 
