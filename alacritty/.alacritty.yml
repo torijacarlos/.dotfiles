@@ -123,8 +123,8 @@ window:
 
 # Font configuration
 font:
-  #normal:
-  #  family: Consolas
+  normal:
+    family: Hack Nerd Font
 
   size: 11.0
 
