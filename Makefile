@@ -20,6 +20,13 @@ setup:
 	@make tmux-setup;
 	@make rust;
 
+fonts:
+	@( \
+		cd ~; \
+		git clone git@github.com:ryanoasis/nerdfonts.git; \
+		cd nerdfonts; \
+		./install.sh 
+	)
 
 packages:
 	@sudo dnf -y update;
@@ -51,7 +58,10 @@ dotfiles:
 				echo "====== stow $$folder"; \
 				stow -D $$folder;\
 				stow $$folder; \
-			done \
+			done; \
+			echo "====== stow sddm"; \
+			sudo stow -D sddm -t /etc/sddm.conf.d; \
+			sudo stow sddm -t /etc/sddm.conf.d; \
 		fi \
 	)
 

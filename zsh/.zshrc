@@ -41,3 +41,5 @@ export NVM_DIR="$HOME/.nvm"
 if hash aactivator 2>/dev/null; then
     eval "$(aactivator init)"
 fi
+
+export LC_CTYPE="UTF-8"
