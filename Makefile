@@ -1,62 +1,53 @@
 SHELL=/bin/bash
-LSB_RELEASE=$(shell lsb_release -cs)
-
-
+OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin
 MACOS_PACKAGES=
-FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 picom alacritty \
+FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-38.noarch.rpm \
+		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-38.noarch.rpm \
+		fedora-workstation-repositories
+GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
+FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 \
+		picom alacritty arandr fontawesome5-fonts-all \
 		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nautilus \
 		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find ffmpeg
 
-GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
-	@make pkg-setup;
-	@make dotfiles-setup;
+	@make packages;
 	@make zsh-setup;
+	@make dotfiles;
 	@make tmux-setup;
+	@make rust;
 
-clean-fedora:
-	# This one should completely go once I make an image from fedora server edition
-	@sudo dnf remove firefox konsole dolphin;
 
-pkg-mac:
-	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
-
-pkg-setup:
+packages:
 	@sudo dnf -y update;
 	@sudo dnf install -y dnf-plugins-core;
 	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
-	@( \
-		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm \
-		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm \
-		fedora-workstation-repositories; \
-	)
-	@( \
-		sudo rpm -v --import https://yum.tableplus.com/apt.tableplus.com.gpg.key; \
-		sudo dnf config-manager --add-repo https://yum.tableplus.com/rpm/x86_64/tableplus.repo; \
-	)
+	@sudo dnf install -y $(FEDORA_MIRRORS);
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(FEDORA_PACKAGES);
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
-	@echo "LSP"
-	@sudo dnf install -y rust-analyzer;
 
-rust:
-	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 
-rust-toolchain:
-	@cargo install cargo-watch cargo-audit cargo-asm cargo-license 
-	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres
+zsh-setup: 
+	@echo "=== ZSH";
+	@( \
+		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
+			echo "=== Oh my zsh"; \
+			curl --proto '=https' --tlsv1.2 -sSf $OH_MY_ZSH_INSTALL | sh; \
+			chsh -s $(shell which zsh) $(shell whoami); \
+			rm ~/.zshrc; \
+		fi; \
+	)
 
-dotfiles-setup: 
+
+dotfiles: 
 	@echo "=== .dotfiles";
 	@( \
-		if  [ -z $(shell which stow) ]; then \
-			echo "You haven't run make pkg-setup. Please do first"; \
-			exit 1; \
-		else \
-			for folder in i3 zsh alacritty picom rofi nvim tmux bin; do \
+		if command -v stow &> /dev/null; then \
+			for folder in $(DOTFILES_APPS); do \
 				echo "====== stow $$folder"; \
 				stow -D $$folder;\
 				stow $$folder; \
@@ -64,26 +55,26 @@ dotfiles-setup:
 		fi \
 	)
 
-tmux-setup: 
+
+tmux-setup: dotfiles
 	@echo "=== TMUX";
 	@( \
 		if [ ! -d "$$HOME/.tmux/plugins/tpm" ]; then \
 			echo "====== Downloading tpm"; \
 			git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
 		fi; \
-		echo "====== Loading tmux conf"; \
-		tmux source $$HOME/.tmux.conf; \
 	)
 
-zsh-setup:
-	@echo "=== ZSH";
+
+rust:
 	@( \
-		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
-			echo "=== Oh my zsh"; \
-			sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; \
-			chsh -s $(shell which zsh) $(shell whoami); \
-		fi; \
+		if ! command -v cargo &> /dev/null; then \
+			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; \
+		fi \
 	)
+	@cargo install cargo-watch cargo-audit cargo-asm cargo-license;
+	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres;
+	@sudo dnf install -y rust-analyzer;
 
 
 tf-setup:
@@ -97,6 +88,10 @@ tf-setup:
 		fi \
 	)
 	@sudo tfswitch --latest
+
+
+pkg-mac:
+	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
 
 
 .PHONY: setup
