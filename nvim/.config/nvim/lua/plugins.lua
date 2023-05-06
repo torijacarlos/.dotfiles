@@ -51,9 +51,10 @@ packer.startup(function()
     use('simrat39/rust-tools.nvim')
 
     use({
-        "kylechui/nvim-surround",
+        'kylechui/nvim-surround',
+        tag = '*', 
         config = function()
-            require("nvim-surround").setup()
+            require('nvim-surround').setup({})
         end
     })
 
