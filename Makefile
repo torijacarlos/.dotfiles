@@ -80,7 +80,7 @@ rust:
 	)
 	@cargo install cargo-watch cargo-audit cargo-asm cargo-license;
 	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres;
-	@sudo dnf install -y rust-analyzer;
+	@rustup component add rust-analyzer;
 
 
 tf-setup:
