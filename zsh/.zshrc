@@ -25,6 +25,11 @@ alias gfi="gaa && gca"
 alias vim="nvim"
 alias v="nvim"
 
+## rclone alias
+
+alias rpull="rclone copy drive:/ ~/drive"
+alias rpush="rclone sync ~/drive drive:/"
+
 ## tmux aliases
 
 alias tw="tmux-session"
