@@ -7,7 +7,7 @@ FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 		fedora-workstation-repositories
 GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 \
-		picom alacritty arandr pbcopy ImageMagick xdpyinfo rclone google-noto-cjk-fonts \
+		picom alacritty arandr pbcopy ImageMagick xdpyinfo rclone google-noto-cjk-fonts htop \
 		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nautilus \
 		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find ffmpeg sqlite
 FEDORA_AUDIO=pulseaudio pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pluseaudio

@@ -141,4 +141,4 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+u split toggle
 bindsym $mod+s exec maim -s | xclip -selection clipboard -t image/png
 
-
+exec_always --no-startup-id nitrogen --restore
