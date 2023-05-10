@@ -103,8 +103,8 @@ set $ws1 "1"
 set $ws2 "2"
 
 # switch to workspace
-bindsym $mod+m workspace number $ws1
-bindsym $mod+comma workspace number $ws2
+bindsym Mod1+m workspace number $ws1
+bindsym Mod1+comma workspace number $ws2
 
 # move focused container to workspace
 bindsym $mod+Shift+m move container to workspace number $ws1
