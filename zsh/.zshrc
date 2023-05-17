@@ -13,6 +13,8 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/var/lib/flatpak/exports/bin/:$PATH"
+
 
 ## git aliases
 
