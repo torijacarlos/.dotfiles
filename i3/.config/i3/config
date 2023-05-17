@@ -101,14 +101,17 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
+set $ws3 "3"
 
 # switch to workspace
 bindsym Mod1+m workspace number $ws1
 bindsym Mod1+comma workspace number $ws2
+bindsym Mod1+period workspace number $ws3
 
 # move focused container to workspace
-bindsym $mod+Shift+m move container to workspace number $ws1
-bindsym $mod+Shift+comma move container to workspace number $ws2
+bindsym Mod1+Shift+m move container to workspace number $ws1
+bindsym Mod1+Shift+comma move container to workspace number $ws2
+bindsym Mod1+Shift+period move container to workspace number $ws3
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
