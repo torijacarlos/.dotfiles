@@ -104,6 +104,12 @@ set $ws2 "2"
 set $ws3 "3"
 
 # switch to workspace
+
+workspace "1" output primary
+workspace "2" output primary
+workspace "3" output "eDP" primary
+
+
 bindsym Mod1+m workspace number $ws1
 bindsym Mod1+comma workspace number $ws2
 bindsym Mod1+period workspace number $ws3
