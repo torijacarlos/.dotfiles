@@ -37,6 +37,11 @@ alias rpush="rclone sync ~/drive drive:/"
 alias tw="tmux-session"
 alias twl="tmux-session -l"
 
+## random stuff alias
+
+alias nitro="nitrogen --random --set-zoom"
+
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 

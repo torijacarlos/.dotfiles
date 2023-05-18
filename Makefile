@@ -1,16 +1,17 @@
 SHELL=/bin/bash
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin git
-MACOS_PACKAGES=
 FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-38.noarch.rpm \
-		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-38.noarch.rpm \
-		fedora-workstation-repositories
+	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-38.noarch.rpm \
+	fedora-workstation-repositories
+
 GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
+MACOS_PACKAGES=
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb rofi nitrogen polybar autorandr playerctl maim i3 \
-		picom alacritty arandr pbcopy ImageMagick xdpyinfo rclone google-noto-cjk-fonts htop \
-		docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nautilus \
-		openssl-devel lutris wine steam google-chrome mycli postgresql discord fd-find ffmpeg sqlite \
-		heaptrack
+	picom arandr pbcopy ImageMagick xdpyinfo rclone google-noto-cjk-fonts htop nautilus \
+	openssl-devel google-chrome discord fd-find ffmpeg 
+FEDORA_DEV=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
+	docker-buildx-plugin docker-compose-plugin
 FEDORA_AUDIO=pulseaudio pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pluseaudio
 
 
@@ -29,7 +30,7 @@ packages:
 	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 	@sudo dnf install -y $(FEDORA_MIRRORS);
-	@sudo dnf install -y $(GLOBAL_PACKAGES) $(FEDORA_PACKAGES);
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(FEDORA_PACKAGES) $(FEDORA_DEV);
 	@sudo dnf install -y $(FEDORA_AUDIO) --allowerasing;
 	@sudo dnf swap wireplumpler pipewire-media-session
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
