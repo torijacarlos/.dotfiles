@@ -11,9 +11,9 @@ source $ZSH/oh-my-zsh.sh
 
 ## expand PATH
 
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/links:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/var/lib/flatpak/exports/bin/:$PATH"
 
 
 ## git aliases
