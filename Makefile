@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin git
+DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin git libvirt
 FEDORA_VERSION_ID=$(shell rpm -E %fedora)
 FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
@@ -10,7 +10,7 @@ FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 MACOS_PACKAGES=
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb playerctl ImageMagick xdpyinfo google-noto-cjk-fonts \
-				openssl-devel fd-find ffmpeg 
+				openssl-devel fd-find ffmpeg @virtualization
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
 ENV_PACKAGES=i3 rofi nitrogen polybar autorandr arandr picom htop nautilus discord google-chrome rclone maim
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
