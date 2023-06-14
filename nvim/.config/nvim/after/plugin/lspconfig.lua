@@ -93,3 +93,9 @@ require('lspconfig')['pyright'].setup{
     flags = lsp_flags,
 }
 
+require('lspconfig')['gopls'].setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+

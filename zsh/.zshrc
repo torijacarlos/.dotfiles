@@ -14,6 +14,8 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/links:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 
 ## git aliases
@@ -30,7 +32,7 @@ alias v="nvim"
 ## rclone alias
 
 alias rpull="rclone copy drive:/ ~/drive"
-alias rpush="rclone sync ~/drive drive:/"
+alias rpush="rclone sync --drive-import-formats=xlsx ~/drive drive:/"
 
 ## tmux aliases
 

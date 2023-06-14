@@ -17,6 +17,8 @@ vim.keymap.set("i", "{", "{}<esc>i", bufopts)
 vim.keymap.set("i", "[", "[]<esc>i", bufopts)
 vim.keymap.set("i", "'", "''<esc>i", bufopts)
 vim.keymap.set("i", "\"", "\"\"<esc>i", bufopts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+
 
 
 --- Only Html

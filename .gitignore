@@ -3,3 +3,6 @@ bin/.local/state/*
 bin/.local/links/*
 nvim/.config/nvim/plugin/*
 rust-analyzer
+
+# personal builds
+bin/.local/bin/dougu

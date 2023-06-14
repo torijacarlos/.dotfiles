@@ -2,3 +2,5 @@
 name = torijacarlos
 email = alejandro.torija.b@gmail.com
 
+[init]
+	defaultBranch = main
