@@ -8,7 +8,7 @@ FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 	fedora-workstation-repositories
 
 GLOBAL_PACKAGES=stow fzf neovim ripgrep tig tmux tldr xclip openssl 
-FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick xdpyinfo google-noto-cjk-fonts \
+UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick xdpyinfo google-noto-cjk-fonts \
 				openssl-devel fd-find ffmpeg @virtualization
 LAPTOP_PACKAGES=playerctl brightnessctl
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
@@ -33,7 +33,7 @@ base:
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 
 packages:
-	@sudo dnf install -y $(FEDORA_PACKAGES) $(GLOBAL_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
 	@sudo dnf swap wireplumpler pipewire-media-session
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
