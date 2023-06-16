@@ -1,18 +1,20 @@
 SHELL=/bin/bash
 
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin git libvirt
+DOTFILES_APPS=sway wofi waybar zsh alacritty nvim tmux bin git libvirt
 FEDORA_VERSION_ID=$(shell rpm -E %fedora)
 FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	fedora-workstation-repositories
 
-GLOBAL_PACKAGES=stow fzf neovim ripgrep tig tmux tldr xclip openssl 
-UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick xdpyinfo google-noto-cjk-fonts \
-				openssl-devel fd-find ffmpeg @virtualization
+GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl 
+UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick google-noto-cjk-fonts openssl-devel fd-find ffmpeg @virtualization
 LAPTOP_PACKAGES=playerctl brightnessctl
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
-ENV_PACKAGES=i3 rofi nitrogen polybar autorandr arandr picom htop nautilus discord google-chrome rclone maim
+XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
+WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
+#nitrogen autorandr arandr
+ENV_PACKAGES=htop rclone discord google-chrome 
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
 	docker-buildx-plugin docker-compose-plugin
 
@@ -35,7 +37,7 @@ base:
 packages:
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
-	@sudo dnf swap wireplumpler pipewire-media-session
+	@sudo dnf swap wireplumpler pipewire-media-session;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 
 
@@ -61,9 +63,9 @@ dotfiles:
 				stow -D $$folder;\
 				stow $$folder; \
 			done; \
-			echo "====== stow sddm"; \
-			sudo stow -D sddm -t /etc/sddm.conf.d; \
-			sudo stow sddm -t /etc/sddm.conf.d; \
+			echo "===== hard copy greetd"; \
+			sudo rm /etc/greetd/*; \
+			sudo cp -t /etc/greetd greetd/config.toml greetd/sway-config; \
 		fi \
 	)
 

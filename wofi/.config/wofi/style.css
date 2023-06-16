@@ -1,0 +1,41 @@
+#window {
+  	font-family: "Noto Sans 12";  
+    padding: 5px;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+#entry {
+    color: #EEEEEE;
+    padding: 0px;
+    border: 1px solid #AAAAAA;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+
+#outer-box {
+    background: #3C3C3C;
+    border-radius: 10px;
+    border: 2px solid #95AEC7;
+    padding: 10px;
+}
+
+#input {
+    background: #5C5C5C;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#unselected {
+    color: #E0E0E0;
+    margin: 0px;
+    padding: 10px;
+}
+
+#selected {
+    background: #95AEC7;
+    margin: 0px;
+    padding: 10px;
+}

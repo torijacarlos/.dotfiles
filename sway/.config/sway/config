@@ -1,0 +1,150 @@
+##############
+# Base
+##############
+
+set $mod Mod4
+
+## Display
+output eDP-1 pos 1920 460 mode 2520x1680@60.001Hz scale 1.5 
+output DP-2 pos 0 0 mode 1920x1080@60Hz 
+#exec_always --no-startup-id autorandr --change 
+
+# NetworkManager 
+exec --no-startup-id nm-applet
+
+# Status bar
+exec_always --no-startup-id $HOME/.config/waybar/launch.sh
+
+# Lock screen
+bindsym $mod+Control+q exec swaylock --image $HOME/.dotfiles/assets/lockscreen.png
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
+
+# Player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Brightness controls
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 10%+
+
+# Drag with mouse to position
+floating_modifier $mod
+
+# Terminal
+bindsym $mod+Return exec alacritty
+
+# Kill focused window
+bindsym $mod+q kill
+
+# dmenu
+bindsym Mod1+space exec "wofi --show=drun --no-actions --insensitive --lines=7"
+
+##############
+# Styling
+##############
+
+default_border pixel 0
+gaps inner 10
+gaps outer 10
+
+##############
+# Navigation
+##############
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+e floating toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+bindsym $mod+u split toggle
+
+##############
+# Workspaces
+##############
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+
+workspace "1" output "DP-2" "eDP"
+workspace "2" output "DP-2" "eDP"
+workspace "3" output "eDP"
+
+bindsym Mod1+m workspace number $ws1
+bindsym Mod1+comma workspace number $ws2
+bindsym Mod1+period workspace number $ws3
+
+bindsym Mod1+Shift+m move container to workspace number $ws1
+bindsym Mod1+Shift+comma move container to workspace number $ws2
+bindsym Mod1+Shift+period move container to workspace number $ws3
+
+# restart inplace
+bindsym $mod+Shift+r reload
+
+##############
+# Resize mode
+##############
+
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+##############
+# Power mode
+##############
+
+mode "power" {
+    bindsym j exec systemctl reboot
+    bindsym k exec systemctl poweroff
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+g mode "power"
+
+##############
+# Misc
+##############
+
+# Screenshots
+bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" - | wl-copy
+
+# Background
+output * bg $HOME/.dotfiles/assets/lockscreen.png fill

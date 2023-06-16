@@ -1,0 +1,152 @@
+window#waybar {
+  	font-family: "Noto Sans 12";  
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0);
+    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces {
+    margin-right: 5px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #ffffff;
+    background-color: rgba(60,60,60,0.6);
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+    box-shadow: inset 0 -3px #ffffff;
+    background-color: rgba(60,60,60,1);
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode,
+#memory,
+#cpu,
+#pulseaudio,
+#backlight,
+#scratchpad,
+#network,
+#battery,
+#temperature,
+#bluetooth,
+#language,
+#clock {
+    margin-right: 5px;
+    padding: 0 10px;
+    background-color: rgba(60,60,60,0.6);
+}
+
+/* Left modules */
+
+#mode {
+    color: #EEE;
+    background: #FF6242;
+}
+
+#memory {
+    color: #95AEC7;
+}
+
+#cpu {
+    color: #FF9D5C;
+}
+
+#pulseaudio {
+    color: #93C572;
+}
+
+#pulseaudio.muted {
+    color: #FF6242;
+}
+
+#backlight {
+    color: #ece75f;
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+/* Right modules */
+
+#network {
+    color: #EEE;
+    padding-right: 16px;
+}
+
+#network.disconnected {
+    color: #FF6242;
+}
+
+#battery {
+    color: #93C572;
+    padding-right: 16px;
+}
+
+#battery.charging, #battery.plugged {
+    color: #3C3C3C;
+    background: #ece75f;
+}
+
+#battery.critical:not(.charging) {
+    color: #FF6242;
+}
+
+#temperature {
+    color: #FF9D5C;
+}
+
+#temperature.critical {
+    color: #FF6242;
+}
+
+#bluetooth {
+    color: #7C7C7C;
+}
+
+#bluetooth.connected {
+    color: #95aec7;
+}
+
+#language {
+    color: #87ffeb;
+}
+
+#clock.date {
+    color: #E39FF6;
+}
+
+#clock {
+    color: #EEE;
+}

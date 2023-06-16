@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 sudo dnf update -y
-sudo dnf -y install @base-x xterm xsetroot; # xorg
-sudo dnf -y install git stow make sddm;
+sudo dnf -y install greetd sway; 
+sudo dnf -y install git stow make;
 
-sudo systemctl enable sddm;
+sudo systemctl enable greetd;
 sudo systemctl set-default graphical.target;
 
 pushd $HOME
