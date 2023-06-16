@@ -7,8 +7,7 @@ FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	fedora-workstation-repositories
 
-GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
-MACOS_PACKAGES=
+GLOBAL_PACKAGES=stow fzf neovim ripgrep tig tmux tldr xclip openssl 
 FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick xdpyinfo google-noto-cjk-fonts \
 				openssl-devel fd-find ffmpeg @virtualization
 LAPTOP_PACKAGES=playerctl brightnessctl
@@ -20,19 +19,20 @@ DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
-	@make packages;
+	@make base;
 	@make zsh-setup;
 	@make dotfiles;
 	@make tmux-setup;
 	@make rust;
+	@make packages;
 
-
-packages:
+base:
 	@sudo dnf -y update;
-	@sudo dnf install -y dnf-plugins-core;
+	@sudo dnf install -y dnf-plugins-core $(FEDORA_MIRRORS);
 	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
-	@sudo dnf install -y $(FEDORA_MIRRORS);
+
+packages:
 	@sudo dnf install -y $(FEDORA_PACKAGES) $(GLOBAL_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
 	@sudo dnf swap wireplumpler pipewire-media-session
@@ -41,6 +41,7 @@ packages:
 
 zsh-setup: 
 	@echo "=== ZSH";
+	@sudo dnf install -y zsh;
 	@( \
 		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
 			echo "=== Oh my zsh"; \
@@ -100,9 +101,6 @@ tf-setup:
 	)
 	@sudo tfswitch --latest
 
-
-pkg-mac:
-	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
 
 
 .PHONY: setup fonts
