@@ -1,46 +1,49 @@
 SHELL=/bin/bash
 
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=i3 zsh alacritty polybar picom rofi nvim tmux bin git libvirt
+DOTFILES_APPS=sway zsh alacritty polybar wofi nvim tmux bin git libvirt
 FEDORA_VERSION_ID=$(shell rpm -E %fedora)
 FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	fedora-workstation-repositories
 
-GLOBAL_PACKAGES=zsh stow fzf neovim ripgrep tig tmux tldr xclip openssl 
-MACOS_PACKAGES=
-FEDORA_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick xdpyinfo google-noto-cjk-fonts \
-				openssl-devel fd-find ffmpeg @virtualization
+GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl 
+UTILS_PACKAGES=g++ libusb ImageMagick google-noto-cjk-fonts openssl-devel fd-find ffmpeg @virtualization
 LAPTOP_PACKAGES=playerctl brightnessctl
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
-ENV_PACKAGES=i3 rofi nitrogen polybar autorandr arandr picom htop nautilus discord google-chrome rclone maim
+XORG_PACKAGES=i3 rofi nitrogen polybar autorandr arandr picom
+WAYLAND_PACKAGES=sway wofi
+#nitrogen polybar autorandr arandr
+ENV_PACKAGES=htop rclone maim nautilus discord google-chrome 
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
 	docker-buildx-plugin docker-compose-plugin
 
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
-	@make packages;
+	@make base;
 	@make zsh-setup;
 	@make dotfiles;
 	@make tmux-setup;
 	@make rust;
+	@make packages;
 
-
-packages:
+base:
 	@sudo dnf -y update;
-	@sudo dnf install -y dnf-plugins-core;
+	@sudo dnf install -y dnf-plugins-core $(FEDORA_MIRRORS);
 	@sudo dnf config-manager --set-enabled google-chrome;
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
-	@sudo dnf install -y $(FEDORA_MIRRORS);
-	@sudo dnf install -y $(FEDORA_PACKAGES) $(GLOBAL_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
+
+packages:
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
-	@sudo dnf swap wireplumpler pipewire-media-session
-	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
+	@sudo dnf swap wireplumpler pipewire-media-session;
+	#@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 
 
 zsh-setup: 
 	@echo "=== ZSH";
+	@sudo dnf install -y zsh;
 	@( \
 		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
 			echo "=== Oh my zsh"; \
@@ -60,9 +63,9 @@ dotfiles:
 				stow -D $$folder;\
 				stow $$folder; \
 			done; \
-			echo "====== stow sddm"; \
-			sudo stow -D sddm -t /etc/sddm.conf.d; \
-			sudo stow sddm -t /etc/sddm.conf.d; \
+			echo "===== stow greetd"; \
+			sudo rm /etc/greetd/*; \
+			sudo cp -t /etc/greetd greetd/config.toml greetd/sway-config; \
 		fi \
 	)
 
@@ -100,9 +103,6 @@ tf-setup:
 	)
 	@sudo tfswitch --latest
 
-
-pkg-mac:
-	@brew install $(GLOBAL_PACKAGES) $(MACOS_PACKAGES);
 
 
 .PHONY: setup fonts
