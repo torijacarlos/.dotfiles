@@ -6,3 +6,4 @@ rust-analyzer
 
 # personal builds
 bin/.local/bin/dougu
+bin/.local/bin/swaybg-randomizer
