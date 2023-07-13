@@ -1,7 +1,8 @@
 vim.go.showmatch = true
+vim.go.swapfile = false
 vim.go.wildmode = 'lastused,longest,list'
-vim.opt.colorcolumn = "120"
-vim.opt.signcolumn = "yes"
+vim.o.colorcolumn = "100"
+vim.o.signcolumn = "yes"
 
 
 vim.o.clipboard = 'unnamedplus'
@@ -21,7 +22,6 @@ vim.wo.cursorlineopt = "line"
 
 vim.bo.autoindent = true
 vim.bo.smartindent = true
-vim.bo.swapfile = false
 vim.bo.wrapmargin = 100
 
 
