@@ -59,6 +59,7 @@
     },
     "bluetooth": {
         "format": "",
+        "format-connected-battery": "{device_battery_percentage}% ",
         "on-click": "torijacarlos_bluetooth_toggle",
     },
     "clock#date": {
