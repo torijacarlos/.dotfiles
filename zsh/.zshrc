@@ -39,9 +39,16 @@ alias rpush="rclone sync --drive-import-formats=xlsx ~/drive drive:/"
 alias tw="tmux-session"
 alias twl="tmux-session -l"
 
+## development
+
+alias python="python3"
+alias pip="pip3"
+
 ## handmade personal tools 
 
 alias sbg="swaybg-randomizer -r"
+
+## stuff
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
