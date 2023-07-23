@@ -87,7 +87,7 @@ require('lspconfig')['clangd'].setup{
     flags = lsp_flags,
 }
 
-require('lspconfig')['pyright'].setup{
+require('lspconfig')['pylsp'].setup{
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,

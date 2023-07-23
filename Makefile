@@ -86,10 +86,13 @@ rust:
 			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; \
 		fi \
 	)
-	@cargo install cargo-watch cargo-audit cargo-asm cargo-license;
+	@cargo install cargo-watch cargo-audit cargo-asm cargo-license cargo-expand irust;
 	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres;
 	@rustup component add rust-analyzer;
 
+python:
+	@python3 -m ensurepip --upgrade;
+	@pip3 install python-lsp-server;
 
 tf-setup:
 	@echo "=== Setting up Terraform";
