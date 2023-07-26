@@ -5,8 +5,8 @@
 set $mod Mod4
 
 ## Display
-output eDP-1 pos 1920 460 mode 2520x1680@60.001Hz scale 1.5 
-output DP-2 pos 0 0 mode 1920x1080@60Hz 
+output eDP-1 pos 0 0 mode 2520x1680@60.001Hz scale 1.5 
+output DP-2 pos 1680 0 mode 1920x1080@60Hz 
 #exec_always --no-startup-id autorandr --change 
 
 # NetworkManager 
