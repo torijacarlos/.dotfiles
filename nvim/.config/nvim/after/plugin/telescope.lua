@@ -1,7 +1,7 @@
 require("telescope").setup({
     defaults = { 
         file_ignore_patterns = {
-            '.git', 
+            '%.git', 
             'target', 
             'Cargo.lock',
             '__pycache__', 
