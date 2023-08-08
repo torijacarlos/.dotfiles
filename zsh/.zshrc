@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 ## expand PATH
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/rust/bin:$PATH"
 export PATH="$HOME/.local/links:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
@@ -29,10 +30,11 @@ alias gfi="gaa && gca"
 alias vim="nvim"
 alias v="nvim"
 
-## rclone alias
+## simplified commands
 
 alias rpull="rclone copy drive:/ ~/drive"
 alias rpush="rclone sync --drive-import-formats=xlsx ~/drive drive:/"
+alias rg="rg -i"
 
 ## tmux aliases
 

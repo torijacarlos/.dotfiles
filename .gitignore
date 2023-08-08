@@ -11,5 +11,4 @@ bin/.local/bin/pylsp*
 bin/.local/bin/nodeenv
 
 # personal builds
-bin/.local/bin/dougu
-bin/.local/bin/swaybg-randomizer
+bin/.local/rust/*
