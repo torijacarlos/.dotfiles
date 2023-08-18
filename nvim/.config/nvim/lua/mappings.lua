@@ -11,6 +11,13 @@ vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files(
 vim.keymap.set("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", bufopts)
 vim.keymap.set("n", "<leader>fq", ":lua require('telescope.builtin').quickfix()<cr>", bufopts)
 
+vim.keymap.set("n", "<leader>tt", ":NvimTreeFocus<cr>", bufopts)
+vim.keymap.set("n", "<leader>tg", ":NvimTreeFindFile<cr>", bufopts)
+vim.keymap.set("n", "<leader>tq", ":NvimTreeCollapse<cr>", bufopts)
+
+
+
+
 -- Autocompletes
 vim.keymap.set("i", "(", "()<esc>i", bufopts)
 vim.keymap.set("i", "{", "{}<esc>i", bufopts)

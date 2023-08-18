@@ -24,6 +24,12 @@ vim.bo.autoindent = true
 vim.bo.smartindent = true
 vim.bo.wrapmargin = 100
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true
+
+
 
 require('mappings')
 require('plugins')
