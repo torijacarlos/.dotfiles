@@ -16,7 +16,7 @@ WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
 #nitrogen autorandr arandr
 ENV_PACKAGES=htop rclone discord google-chrome 
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
-	docker-buildx-plugin docker-compose-plugin
+	docker-buildx-plugin docker-compose-plugin jq
 
 
 setup: 
