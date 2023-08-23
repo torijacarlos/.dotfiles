@@ -46,10 +46,6 @@ alias twl="tmux-session -l"
 alias python="python3"
 alias pip="pip3"
 
-## handmade personal tools 
-
-alias sbg="swaybg-randomizer -r"
-
 ## stuff
 
 autoload -U +X bashcompinit && bashcompinit
