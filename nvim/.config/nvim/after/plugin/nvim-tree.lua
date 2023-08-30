@@ -2,7 +2,6 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     width = 40,
-    hide_root_folder = true,
     relativenumber = true,
     float = {
         enable = true,
@@ -11,6 +10,7 @@ require("nvim-tree").setup({
   renderer = {
     group_empty = true,
     indent_width = 2,
+    root_folder_label = false,
   },
   filters = {
     dotfiles = false,
