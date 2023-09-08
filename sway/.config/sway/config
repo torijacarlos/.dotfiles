@@ -5,10 +5,12 @@
 set $mod Mod4
 
 ## Display
-output eDP-1 pos 0 0 mode 2520x1680@60Hz scale 1.5 
-output DP-2 pos 1680 0 mode 1920x1080@60Hz 
+output DP-2 pos 0 0 mode 1920x1080@60Hz 
+output eDP-1 pos 1920 0 mode 2520x1680@60Hz scale 1.5 
+output HDMI-A-1 pos 3600 0 mode 1920x1080@60Hz 
 
-#exec_always --no-startup-id autorandr --change 
+## Inputs
+input 9580:109:HID_256c:006d_Pen map_to_output HDMI-A-1
 
 # NetworkManager 
 exec --no-startup-id nm-applet

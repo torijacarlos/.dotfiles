@@ -14,7 +14,7 @@ AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseau
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
 WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
 #nitrogen autorandr arandr
-ENV_PACKAGES=htop rclone discord google-chrome 
+ENV_PACKAGES=htop rclone google-chrome 
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
 	docker-buildx-plugin docker-compose-plugin jq
 

@@ -46,6 +46,12 @@ alias twl="tmux-session -l"
 alias python="python3"
 alias pip="pip3"
 
+## personal tools 
+
+alias dsb="dougu sbg ~/drive/digitalart"
+alias es="elixir-schedule"
+alias ef="elixir-finance"
+
 ## stuff
 
 autoload -U +X bashcompinit && bashcompinit
