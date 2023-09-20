@@ -53,6 +53,7 @@ alias es="elixir-schedule"
 alias ef="elixir-finance"
 alias todo="rg todo --no-heading --sort path --trim"
 alias note="rg note --no-heading --sort path --trim"
+alias mpdf="pandoc --pdf-engine=pdfroff"
 
 ## stuff
 

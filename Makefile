@@ -8,15 +8,19 @@ FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 	fedora-workstation-repositories
 
 GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl 
-UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick google-noto-cjk-fonts openssl-devel fd-find ffmpeg @virtualization
+UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick google-noto-cjk-fonts openssl-devel fd-find ffmpeg @virtualization pandoc groff ghostscript
 LAPTOP_PACKAGES=playerctl brightnessctl
-AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
-XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
-WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
-#nitrogen autorandr arandr
 ENV_PACKAGES=htop rclone google-chrome 
 DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
-	docker-buildx-plugin docker-compose-plugin jq
+	docker-buildx-plugin docker-compose-plugin jq cmake 
+
+AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
+
+XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
+WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
+
+RAYLIB_PACKAGES=alsa-lib-devel mesa-libGL-devel libX11-devel libXrandr-devel libXi-devel libXcursor-devel libXinerama-devel libatomic
+WAYLAND_DEV_PACKAGES=wayland-devel libxkbcommon-devel wayland-protocols-devel
 
 
 setup: 
@@ -35,7 +39,8 @@ base:
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 
 packages:
-	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES) $(DEV_PACKAGES);
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES); 
+	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
 	@sudo dnf swap wireplumpler pipewire-media-session;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
