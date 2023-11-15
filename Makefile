@@ -1,27 +1,26 @@
 SHELL=/bin/bash
 
-OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=sway wofi waybar zsh alacritty nvim tmux bin git libvirt
 FEDORA_VERSION_ID=$(shell rpm -E %fedora)
 FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
 	fedora-workstation-repositories
 
-GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl 
-UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick google-noto-cjk-fonts openssl-devel fd-find ffmpeg @virtualization pandoc groff ghostscript
-LAPTOP_PACKAGES=playerctl brightnessctl
-ENV_PACKAGES=htop rclone google-chrome 
-DEV_PACKAGES=alacritty sqlite mycli postgresql heaptrack docker-ce docker-ce-cli containerd.io \
-	docker-buildx-plugin docker-compose-plugin jq cmake 
+OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+DOTFILES_APPS=sway wofi waybar zsh alacritty nvim tmux bin git libvirt
 
+LAPTOP_PACKAGES=playerctl brightnessctl
+
+GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone
+UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
+	openssl-devel fd-find ffmpeg pandoc groff ghostscript 
+DEV_PACKAGES=alacritty heaptrack jq cmake gdb
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
 
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
-WAYLAND_PACKAGES=sway wofi waybar wl-clipboard grim wlr-randr thunar
+WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
 
-RAYLIB_PACKAGES=alsa-lib-devel mesa-libGL-devel libX11-devel libXrandr-devel libXi-devel libXcursor-devel libXinerama-devel libatomic
-WAYLAND_DEV_PACKAGES=wayland-devel libxkbcommon-devel wayland-protocols-devel
-
+APP_PACKAGES=krita audacity obs-studio discord google-chrome 
+FONTS_PACKAGES=google-noto-emoji-color-fonts google-noto-cjk-fonts
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
@@ -39,8 +38,8 @@ base:
 	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 
 packages:
-	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES) $(ENV_PACKAGES); 
-	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES);
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
+	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
 	@sudo dnf swap wireplumpler pipewire-media-session;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
