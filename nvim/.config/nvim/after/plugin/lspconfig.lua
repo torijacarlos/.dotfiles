@@ -1,6 +1,5 @@
 local on_attach = function(client, bufnr)
     -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
@@ -13,6 +12,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+
+    vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, bufopts)
+    vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, bufopts)
 end
 
 local lsp_flags = {
@@ -64,7 +66,15 @@ cmp.setup.cmdline(':', {
     })
 })
 
--- Setup lspconfig.
+
+-- Setup rust-tools
+require("rust-tools").setup({
+  server = {
+    on_attach = on_attach,
+  },
+})
+
+-- Setup lspconfig
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -81,7 +91,7 @@ require('lspconfig')['tsserver'].setup{
 }
 
 require('lspconfig')['clangd'].setup{
-    cmd = { "clangd", "--query-driver=/usr/bin/x86_64-w64-mingw32-*,/usr/bin/*-g++"},
+    cmd = { "clangd", "--query-driver=/usr/bin/*-g++"},
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
@@ -99,3 +109,4 @@ require('lspconfig')['gopls'].setup{
     flags = lsp_flags,
 }
 
+require("autoclose").setup()

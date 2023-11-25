@@ -13,7 +13,7 @@ LAPTOP_PACKAGES=playerctl brightnessctl
 GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone
 UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
 	openssl-devel fd-find ffmpeg pandoc groff ghostscript 
-DEV_PACKAGES=alacritty heaptrack jq cmake gdb
+DEV_PACKAGES=alacritty heaptrack jq cmake gdb clang-tools-extra
 AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
 
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus

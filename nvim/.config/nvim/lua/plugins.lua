@@ -65,5 +65,7 @@ packer.startup(function()
 
     use('nvim-tree/nvim-tree.lua')
 
+    use('m4xshen/autoclose.nvim')
 end)
+
 

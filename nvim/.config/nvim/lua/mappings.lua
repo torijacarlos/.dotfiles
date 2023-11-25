@@ -11,28 +11,11 @@ vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files(
 vim.keymap.set("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", bufopts)
 vim.keymap.set("n", "<leader>fq", ":lua require('telescope.builtin').quickfix()<cr>", bufopts)
 
+-- Nvim Tree
 vim.keymap.set("n", "<leader>tt", ":NvimTreeToggle<cr>", bufopts)
 vim.keymap.set("n", "<leader>tg", ":NvimTreeFindFile<cr>", bufopts)
 vim.keymap.set("n", "<leader>tq", ":NvimTreeCollapse<cr>", bufopts)
 
-
-
-
--- Autocompletes
-vim.keymap.set("i", "(", "()<esc>i", bufopts)
-vim.keymap.set("i", "{", "{}<esc>i", bufopts)
-vim.keymap.set("i", "[", "[]<esc>i", bufopts)
-vim.keymap.set("i", "'", "''<esc>i", bufopts)
-vim.keymap.set("i", "\"", "\"\"<esc>i", bufopts)
+-- Additional
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 
-
-
---- Only Html
-vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("html-braces", { clear = true }),
-    pattern = { "html" },
-    callback = function()
-        vim.keymap.set("i", "<", "<><esc>i", bufopts)
-    end
-})

@@ -30,7 +30,5 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 
-
 require('mappings')
 require('plugins')
-require('indentation')
