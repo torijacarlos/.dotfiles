@@ -7,7 +7,7 @@ set $mod Mod4
 ## Display
 output DP-2 pos 0 0 mode 1920x1080@60Hz 
 output eDP-1 pos 1920 0 mode 2520x1680@60Hz scale 1.5 
-output HDMI-A-1 pos 3600 0 mode 1920x1080@60Hz 
+output HDMI-A-1 pos 0 1080 mode 1920x1080@60Hz 
 
 ## Inputs
 input 9580:109:HID_256c:006d_Pen map_to_output HDMI-A-1
@@ -100,18 +100,23 @@ bindsym $mod+u split toggle
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
+set $ws4 "4"
 
 workspace 1 output "DP-2" "eDP"
 workspace 2 output "DP-2" "eDP"
 workspace 3 output "eDP"
+workspace 4 output "HDMI-A-1"
 
 bindsym Mod1+m workspace number $ws1
 bindsym Mod1+comma workspace number $ws2
 bindsym Mod1+period workspace number $ws3
+bindsym Mod1+slash workspace number $ws4
+
 
 bindsym Mod1+Shift+m move container to workspace number $ws1
 bindsym Mod1+Shift+comma move container to workspace number $ws2
 bindsym Mod1+Shift+period move container to workspace number $ws3
+bindsym Mod1+Shift+slash move container to workspace number $ws4
 
 # restart inplace
 bindsym $mod+Shift+r reload
