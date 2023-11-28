@@ -110,3 +110,17 @@ require('lspconfig')['gopls'].setup{
 }
 
 require("autoclose").setup()
+
+vim.api.nvim_create_autocmd('FileType', {
+	desc = 'STFU and thank you',
+	pattern = { 'rust', 'c', 'cpp' },
+	callback = function (_)
+        vim.diagnostic.config({virtual_text = false})
+	end,
+})
+
+
+
+
+
+
