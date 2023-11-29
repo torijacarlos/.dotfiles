@@ -19,7 +19,7 @@ AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseau
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
 WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
 
-APP_PACKAGES=krita audacity obs-studio discord google-chrome 
+APP_PACKAGES=krita audacity obs-studio discord firefox
 FONTS_PACKAGES=google-noto-emoji-color-fonts google-noto-cjk-fonts
 
 setup: 
@@ -34,8 +34,6 @@ setup:
 base:
 	@sudo dnf -y update;
 	@sudo dnf install -y dnf-plugins-core $(FEDORA_MIRRORS);
-	@sudo dnf config-manager --set-enabled google-chrome;
-	@sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo;
 
 packages:
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
