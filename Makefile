@@ -10,7 +10,7 @@ DOTFILES_APPS=sway wofi waybar zsh alacritty nvim tmux bin git libvirt
 
 LAPTOP_PACKAGES=playerctl brightnessctl
 
-GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone
+GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone bluez-hid2hci
 UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
 	openssl-devel fd-find ffmpeg pandoc groff ghostscript 
 DEV_PACKAGES=alacritty heaptrack jq cmake gdb clang-tools-extra
