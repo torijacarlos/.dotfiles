@@ -19,7 +19,7 @@ AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseau
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
 WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
 
-APP_PACKAGES=krita audacity obs-studio discord firefox
+APP_PACKAGES=krita audacity obs-studio discord chromium
 FONTS_PACKAGES=google-noto-emoji-color-fonts google-noto-cjk-fonts
 
 setup: 
