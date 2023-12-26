@@ -14,7 +14,7 @@ GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone bluez-hid2h
 UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
 	openssl-devel fd-find ffmpeg pandoc groff ghostscript 
 DEV_PACKAGES=alacritty heaptrack jq cmake gdb clang-tools-extra
-AUDIO_PACKAGES=pipewire-pulseaudio alsa-utils alsa-firmware alsa-plugins-pulseaudio
+AUDIO_PACKAGES=alsa-firmware pipewire wireplumber pipewire-pulseaudio pulseaudio-utils
 
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
 WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
@@ -39,7 +39,6 @@ packages:
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
 	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
-	@sudo dnf swap wireplumpler pipewire-media-session;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 
 

@@ -22,9 +22,9 @@ exec_always --no-startup-id $HOME/.config/waybar/launch.sh
 bindsym $mod+Control+q exec swaylock --image $HOME/.dotfiles/assets/lockscreen.png
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute 0 toggle
 
 # Player controls
 bindsym XF86AudioPlay exec playerctl play-pause
