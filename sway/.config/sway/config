@@ -74,6 +74,7 @@ bindsym $mod+Shift+l move right
 
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+n output - transform 90 clockwise
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+e layout toggle split
@@ -146,6 +147,15 @@ mode "power" {
     bindsym Escape mode "default"
 }
 bindsym $mod+g mode "power"
+
+##############
+# Keyboards
+##############
+
+input "type:keyboard" {
+    xkb_layout us,es,jp
+    xkb_options grp:ctrl_space_toggle
+}
 
 ##############
 # Misc
