@@ -28,19 +28,16 @@ setup:
 	@make zsh-setup;
 	@make dotfiles;
 	@make tmux-setup;
-	@make rust;
 	@make packages;
 
+# ----------------- #
+# Base Setup        #
+# ----------------- #
+
 base:
+	@echo "=== Base";
 	@sudo dnf -y update;
 	@sudo dnf install -y dnf-plugins-core $(FEDORA_MIRRORS);
-
-packages:
-	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
-	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
-	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
-	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
-
 
 zsh-setup: 
 	@echo "=== ZSH";
@@ -53,7 +50,6 @@ zsh-setup:
 			rm ~/.zshrc; \
 		fi; \
 	)
-
 
 dotfiles: 
 	@echo "=== .dotfiles";
@@ -70,8 +66,7 @@ dotfiles:
 		fi \
 	)
 
-
-tmux-setup: dotfiles
+tmux-setup:
 	@echo "=== TMUX";
 	@( \
 		if [ ! -d "$$HOME/.tmux/plugins/tpm" ]; then \
@@ -80,6 +75,17 @@ tmux-setup: dotfiles
 		fi; \
 	)
 
+packages:
+	@echo "=== Packages";
+	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
+	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
+	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
+	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
+
+
+# ----------------- #
+# Languages Setup   #
+# ----------------- #
 
 rust:
 	@( \
@@ -106,7 +112,6 @@ tf-setup:
 		fi \
 	)
 	@sudo tfswitch --latest
-
 
 
 .PHONY: setup fonts
