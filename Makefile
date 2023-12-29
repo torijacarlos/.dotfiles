@@ -12,14 +12,14 @@ LAPTOP_PACKAGES=playerctl brightnessctl
 
 GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone bluez-hid2hci
 UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
-	openssl-devel fd-find ffmpeg pandoc groff ghostscript 
-DEV_PACKAGES=alacritty heaptrack jq cmake gdb clang-tools-extra
+	openssl-devel fd-find ffmpeg pandoc groff ghostscript neofetch
+DEV_PACKAGES=alacritty heaptrack jq awscli cmake gdb clang-tools-extra
 AUDIO_PACKAGES=alsa-firmware pipewire wireplumber pipewire-pulseaudio pulseaudio-utils
 
 XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
 WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
 
-APP_PACKAGES=krita audacity obs-studio discord chromium
+APP_PACKAGES=krita audacity obs-studio discord chromium steam
 FONTS_PACKAGES=google-noto-emoji-color-fonts google-noto-cjk-fonts
 
 setup: 
@@ -29,6 +29,7 @@ setup:
 	@make dotfiles;
 	@make tmux-setup;
 	@make packages;
+	@make structure;
 
 # ----------------- #
 # Base Setup        #
@@ -82,6 +83,13 @@ packages:
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 
+structure:
+	@echo "=== Structure";
+	@mkdir -p ~/drive;
+	@mkdir -p ~/develop/oss;
+	@mkdir -p ~/develop/torija;
+	@mkdir -p ~/develop/atelier;
+	@mkdir -p ~/develop/practice;
 
 # ----------------- #
 # Languages Setup   #

@@ -14,3 +14,10 @@ git clone https://github.com/torijcarlos/.dotfiles
 pushd $HOME/.dotfiles
 
 make setup
+
+# [ ] setup nerdfont * automate without downloading the entire repo
+# [ ] setup rclone
+# [ ] setup ssh and config file
+# [ ] setup awscli
+# [ ] install vim & tmux plugins
+# [ ] setup steam, enable proton
