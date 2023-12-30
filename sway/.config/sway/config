@@ -4,13 +4,15 @@
 
 set $mod Mod4
 
-## Display
-output DP-2 pos 0 0 mode 1920x1080@60Hz 
+## Display Main setup
+output "Samsung Electric Company C24F390 H4ZM902187" pos 0 0 mode 1920x1080@60Hz 
+output "HAT Kamvas Pro 16 Unknown" pos 0 1080 mode 1920x1080@60Hz 
+
+## Display Mobile setup
 output eDP-1 pos 1920 0 mode 2520x1680@60Hz scale 1.5 
-output HDMI-A-1 pos 0 1080 mode 1920x1080@60Hz 
 
 ## Inputs
-input 9580:109:HID_256c:006d_Pen map_to_output HDMI-A-1
+input 9580:109:HID_256c:006d_Pen map_to_output "HAT Kamvas Pro 16 Unknown"
 
 # NetworkManager 
 exec --no-startup-id nm-applet
@@ -46,7 +48,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # dmenu
-bindsym Mod1+space exec "wofi --show=drun --no-actions --insensitive --lines=7"
+bindsym Mod1+space exec "wofi --show=drun --no-actions --insensitive --lines=6"
 
 ##############
 # Styling
@@ -101,23 +103,18 @@ bindsym $mod+u split toggle
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
-set $ws4 "4"
 
-workspace 1 output "DP-2" "eDP"
-workspace 2 output "DP-2" "eDP"
-workspace 3 output "eDP"
-workspace 4 output "HDMI-A-1"
+workspace 1 output "Samsung Electric Company C24F390 H4ZM902187" "eDP"
+workspace 2 output "Samsung Electric Company C24F390 H4ZM902187" "eDP"
+workspace 3 output "HAT Kamvas Pro 16 Unknown"
 
 bindsym Mod1+m workspace number $ws1
 bindsym Mod1+comma workspace number $ws2
 bindsym Mod1+period workspace number $ws3
-bindsym Mod1+slash workspace number $ws4
-
 
 bindsym Mod1+Shift+m move container to workspace number $ws1
 bindsym Mod1+Shift+comma move container to workspace number $ws2
 bindsym Mod1+Shift+period move container to workspace number $ws3
-bindsym Mod1+Shift+slash move container to workspace number $ws4
 
 # restart inplace
 bindsym $mod+Shift+r reload
@@ -127,12 +124,12 @@ bindsym $mod+Shift+r reload
 ##############
 
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -153,7 +150,7 @@ bindsym $mod+g mode "power"
 ##############
 
 input "type:keyboard" {
-    xkb_layout us,es,jp
+    xkb_layout us,es
     xkb_options grp:ctrl_space_toggle
 }
 
