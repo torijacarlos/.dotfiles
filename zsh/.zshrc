@@ -32,8 +32,8 @@ alias v="nvim"
 
 ## simplified commands
 
-alias rpull="rclone copy drive:/ ~/drive"
-alias rpush="rclone sync --drive-import-formats=xlsx ~/drive drive:/"
+alias rpull="rclone copy drive:/sync/ ~/drive"
+alias rpush="rclone sync ~/drive drive:/sync"
 alias rg="rg -i"
 
 ## tmux aliases
