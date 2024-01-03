@@ -1,0 +1,18 @@
+#!/bin/sh  
+
+source_dir=~/drive/digitalart
+bg_time=60
+
+while getopts t:d: flag
+do
+    case "${flag}" in
+        d) source_dir=${OPTARG};;
+        t) bg_time=${OPTARG};;
+    esac
+done
+
+while true  
+do  
+  dougu sbg $source_dir
+  sleep $bg_time  
+done

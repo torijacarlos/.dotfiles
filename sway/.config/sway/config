@@ -6,7 +6,7 @@ set $mod Mod4
 
 ## Display Main setup
 output "Samsung Electric Company C24F390 H4ZM902187" pos 0 0 mode 1920x1080@60Hz 
-output "HAT Kamvas Pro 16 Unknown" pos 0 1080 mode 1920x1080@60Hz 
+output "HAT Kamvas Pro 16 Unknown" pos 0 1920 mode 1920x1080@60Hz 
 
 ## Display Mobile setup
 output eDP-1 pos 1920 0 mode 2520x1680@60Hz scale 1.5 
