@@ -11,6 +11,7 @@ source $ZSH/oh-my-zsh.sh
 
 ## expand PATH
 
+export PATH="$HOME/.local/.atelier:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/rust/bin:$PATH"
 export PATH="$HOME/.local/links:$PATH"
