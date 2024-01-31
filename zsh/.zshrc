@@ -49,7 +49,6 @@ alias pip="pip3"
 
 ## personal tools 
 
-alias dsb="dougu sbg ~/drive/digitalart"
 alias es="elixir-schedule"
 alias ef="elixir-finance"
 alias todo="rg todo --no-heading --sort path --trim"
