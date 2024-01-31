@@ -13,6 +13,6 @@ done
 
 while true  
 do  
-  dougu sbg $source_dir
+  atelier-scythe swaybg -d $source_dir -r ||:
   sleep $bg_time  
 done

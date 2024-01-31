@@ -49,12 +49,14 @@ alias pip="pip3"
 
 ## personal tools 
 
-alias dsb="dougu sbg ~/drive/digitalart"
 alias es="elixir-schedule"
 alias ef="elixir-finance"
 alias todo="rg todo --no-heading --sort path --trim"
 alias note="rg note --no-heading --sort path --trim"
 alias mpdf="pandoc --pdf-engine=pdfroff"
+alias tcb="torijacarlos_bluetooth_toggle"
+alias tcd="torijacarlos_dumb_bg_switcher"
+alias tbg="swaybg -i ~/drive/drawing/bg.png --mode fill"
 
 ## stuff
 
