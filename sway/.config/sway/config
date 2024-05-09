@@ -160,6 +160,7 @@ input "type:keyboard" {
 
 # Screenshots
 bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+s exec --no-startup-id grim -g "$(slurp)" -t png 
 
 # Background
 output * bg $HOME/.dotfiles/assets/lockscreen.png fill
