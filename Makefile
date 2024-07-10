@@ -81,6 +81,7 @@ packages:
 	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
 	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
 	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
+	@sudo dnf group install --with-optional virtualization;
 	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
 
 structure:

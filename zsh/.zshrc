@@ -35,6 +35,8 @@ alias v="nvim"
 
 alias rpull="rclone copy drive:/sync/ ~/drive"
 alias rpush="rclone sync ~/drive drive:/sync"
+alias photopull="rclone copy drive:/photos/ ~/photos"
+alias photopush="rclone sync ~/photos drive:/photos"
 alias rg="rg -i"
 
 ## tmux aliases
