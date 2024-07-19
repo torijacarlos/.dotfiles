@@ -12,7 +12,7 @@ LAPTOP_PACKAGES=playerctl brightnessctl
 
 GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone bluez-hid2hci
 UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
-	openssl-devel fd-find ffmpeg pandoc groff ghostscript neofetch
+	openssl-devel fd-find ffmpeg pandoc groff ghostscript neofetch dkms
 DEV_PACKAGES=alacritty heaptrack jq awscli cmake gdb clang-tools-extra
 AUDIO_PACKAGES=alsa-firmware pipewire wireplumber pipewire-pulseaudio pulseaudio-utils
 
