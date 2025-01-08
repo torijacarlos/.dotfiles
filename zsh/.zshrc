@@ -55,7 +55,7 @@ alias todo="rg todo --no-heading --sort path --trim"
 alias note="rg note --no-heading --sort path --trim"
 alias mpdf="pandoc --pdf-engine=pdfroff"
 alias tcb="torijacarlos_bluetooth_toggle"
-alias tcd="atelier-scythe swaybg -d ~/drive/digitalart/illustration"
+alias tcd="scythe swaybg -d ~/drive/digitalart/illustration"
 alias tbg="swaybg -i ~/drive/drawing/bg.png --mode fill"
 
 ## stuff
