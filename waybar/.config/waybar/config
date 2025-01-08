@@ -7,9 +7,15 @@
     "margin-right": 20,
     "spacing": 4,
 
-    "modules-left": ["sway/mode", "sway/workspaces", "memory", "cpu", "pulseaudio", "backlight", "sway/scratchpad"],
+    "modules-left": ["hyprland/workspaces", "memory", "cpu", "pulseaudio", "backlight"],
     "modules-right": ["network", "battery", "temperature", "bluetooth", "sway/language", "clock#date", "clock"],
 
+    "hyprland/workspaces": {
+        "show-special": true,
+        "persistent-workspaces": {
+             "*": 2,
+        }
+    },
     "memory": {
         "format": "{}% "
     },

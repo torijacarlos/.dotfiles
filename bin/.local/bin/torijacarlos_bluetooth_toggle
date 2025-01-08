@@ -4,8 +4,7 @@
 
 if [ $(bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0 ]
 then
-  bluetoothctl power on
-  bluetoothctl connect $(bluetoothctl devices | rg "WH-1000XM5" | awk '{ print $2 }')
+  echo "Bluetooth is off"
 else
-  bluetoothctl power off
+  bluetoothctl connect $(bluetoothctl devices | rg "WH-1000XM5" | awk '{ print $2 }')
 fi
