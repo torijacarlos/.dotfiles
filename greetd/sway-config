@@ -1,3 +1,0 @@
-exec "wlgreet --command sway; swaymsg exit"
-
-include /home/torija/.config/sway/*

@@ -1,26 +1,20 @@
 SHELL=/bin/bash
 
-FEDORA_VERSION_ID=$(shell rpm -E %fedora)
-FEDORA_MIRRORS=https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(FEDORA_VERSION_ID).noarch.rpm \
-	https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(FEDORA_VERSION_ID).noarch.rpm \
-	fedora-workstation-repositories
-
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=sway wofi waybar zsh alacritty nvim tmux bin git libvirt
+DOTFILES_APPS=wofi waybar kitty zsh nvim tmux bin git
+# NOTE: hypr needs separate handling
 
-LAPTOP_PACKAGES=playerctl brightnessctl
+LAPTOP_PACKAGES=brightnessctl
+SYSTEM_PACKAGES=bluez bluez-utils qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg wl-clipboard
+# NOTE: hyprpaper seems to lack a lot of features, so keeping swaybg for a sec
+UTIL_PACKAGES=fzf ripgrep tig tmux stow man-db man-pages waybar xclip rclone hyprpaper hyprlock swaybg unzip tree scdoc
+DEV_PACKAGES=heaptrack jq cmake gdb clang-tools-extra \
+			 raylib sld2 sdl2_image sdl2_mixer sdl2_ttf lua
+APP_PACKAGES=krita audacity obs-studio discord chromium steam blender
+FONT_PACKAGES=ttf-hack-nerd otf-font-awesome ttf-nerd-fonts-symbols ttf-droid noto-fonts noto-fonts-emoji
+YAY_PACKAGES=protonup-qt davinci-resolve
 
-GLOBAL_PACKAGES=fzf neovim ripgrep tig tmux tldr openssl htop rclone bluez-hid2hci
-UTILS_PACKAGES=g++ gtk3 webkit2gtk3 libusb ImageMagick sqlite \
-	openssl-devel fd-find ffmpeg pandoc groff ghostscript neofetch dkms
-DEV_PACKAGES=alacritty heaptrack jq awscli cmake gdb clang-tools-extra
-AUDIO_PACKAGES=alsa-firmware pipewire wireplumber pipewire-pulseaudio pulseaudio-utils
-
-XORG_PACKAGES=i3 rofi polybar nitrogen autorandr arandr picom nautilus
-WAYLAND_PACKAGES=sway slurp wofi waybar wl-clipboard grim wlr-randr thunar
-
-APP_PACKAGES=krita audacity obs-studio discord chromium steam
-FONTS_PACKAGES=google-noto-emoji-color-fonts google-noto-cjk-fonts
+# Installation script should add: git neovim chromium
 
 setup: 
 	@echo "Welcome $(shell whoami)!, Let's setup";
@@ -28,8 +22,9 @@ setup:
 	@make zsh-setup;
 	@make dotfiles;
 	@make tmux-setup;
-	@make packages;
 	@make structure;
+	@make yay-setup;
+	@make sddm-theme;
 
 # ----------------- #
 # Base Setup        #
@@ -37,12 +32,14 @@ setup:
 
 base:
 	@echo "=== Base";
-	@sudo dnf -y update;
-	@sudo dnf install -y dnf-plugins-core $(FEDORA_MIRRORS);
+	@sudo pacman -Syy;
+	@sudo pacman -S $(SYSTEM_PACKAGES);
+	@sudo pacman -S $(UTIL_PACKAGES) $(DEV_PACKAGES); 
+	@sudo pacman -S $(FONT_PACKAGES) $(APP_PACKAGES);
 
 zsh-setup: 
 	@echo "=== ZSH";
-	@sudo dnf install -y zsh;
+	@sudo pacman -S zsh;
 	@( \
 		if [ ! -d "$$HOME/.oh-my-zsh" ]; then \
 			echo "=== Oh my zsh"; \
@@ -61,11 +58,10 @@ dotfiles:
 				stow -D $$folder;\
 				stow $$folder; \
 			done; \
-			echo "===== hard copy greetd"; \
-			sudo rm /etc/greetd/*; \
-			sudo cp -t /etc/greetd greetd/config.toml greetd/sway-config; \
 		fi \
 	)
+	@stow --adopt hypr;
+	@git restore .;
 
 tmux-setup:
 	@echo "=== TMUX";
@@ -76,35 +72,30 @@ tmux-setup:
 		fi; \
 	)
 
-packages:
-	@echo "=== Packages";
-	@sudo dnf install -y $(GLOBAL_PACKAGES) $(UTILS_PACKAGES) $(LAPTOP_PACKAGES); 
-	@sudo dnf install -y $(DEV_PACKAGES) $(WAYLAND_PACKAGES) $(APP_PACKAGES) $(FONTS_PACKAGES);
-	@sudo dnf install -y $(AUDIO_PACKAGES) --allowerasing --skip-broken --best;
-	@sudo dnf group install --with-optional virtualization;
-	@gsettings set org.gnome.desktop.interface color-scheme prefer-dark;
-
 structure:
 	@echo "=== Structure";
 	@mkdir -p ~/drive;
 	@mkdir -p ~/develop/oss;
 	@mkdir -p ~/develop/torija;
 	@mkdir -p ~/develop/atelier;
-	@mkdir -p ~/develop/practice;
+
+sddm-theme:
+	@echo "=== SDDM Theme";
+	@sudo mkdir /usr/share/sddm/themes/sugar-candy ||:;
+	@sudo cp -r ./assets/sugar-candy/ /usr/share/sddm/themes/
+	@sudo mkdir /etc/sddm.conf.d ||:;
+	@sudo touch /etc/sddm.conf.d/override.conf ||:;
+	@sudo cp ./assets/sddm-override.conf /etc/sddm.conf.d/override.conf 
+	@sudo cp ./assets/sugar-candy/Backgrounds/lockscreen.png ~/.config/
+
+yay-setup:
+	@sudo git clone https://aur.archlinux.org/yay.git ~/yay ||:
+	@cd ~/yay
+	@makepkg -si
 
 # ----------------- #
 # Languages Setup   #
 # ----------------- #
-
-rust:
-	@( \
-		if ! command -v cargo &> /dev/null; then \
-			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; \
-		fi \
-	)
-	@cargo install cargo-watch cargo-audit cargo-asm cargo-license cargo-expand irust;
-	@cargo install sqlx-cli --no-default-features --features rustls,mysql,postgres;
-	@rustup component add rust-analyzer;
 
 python:
 	@python3 -m ensurepip --upgrade;
