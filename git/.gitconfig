@@ -6,3 +6,5 @@ email = alejandro.torija.b@gmail.com
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+[core]
+	editor = vim

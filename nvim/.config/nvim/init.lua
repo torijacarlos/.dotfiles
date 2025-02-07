@@ -14,6 +14,8 @@ vim.o.softtabstop = 4
 vim.o.syntax = 'on'
 vim.o.tabstop = 4
 vim.o.scrolloff = 8
+vim.o.list = true
+vim.o.listchars = 'space:·,tab:~~'
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -26,7 +28,7 @@ vim.bo.wrapmargin = 100
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
+  
 vim.opt.termguicolors = true
 
 
