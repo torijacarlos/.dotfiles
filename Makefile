@@ -7,11 +7,11 @@ DOTFILES_APPS=wofi waybar kitty zsh nvim tmux bin git
 LAPTOP_PACKAGES=brightnessctl
 SYSTEM_PACKAGES=bluez bluez-utils qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg wl-clipboard
 # NOTE: hyprpaper seems to lack a lot of features, so keeping swaybg for a sec
-UTIL_PACKAGES=fzf ripgrep tig tmux stow man-db man-pages waybar xclip rclone hyprpaper hyprlock swaybg unzip tree scdoc reflector
+UTIL_PACKAGES=fzf ripgrep tig tmux stow man-db man-pages waybar xclip rclone hyprpaper hyprlock swaybg unzip tree scdoc reflector fcitx5-im fcitx5-anthy
 DEV_PACKAGES=heaptrack jq cmake gdb clang-tools-extra \
 			 raylib sld2 sdl2_image sdl2_mixer sdl2_ttf lua
 APP_PACKAGES=krita audacity obs-studio discord chromium steam blender
-FONT_PACKAGES=ttf-hack-nerd otf-font-awesome ttf-nerd-fonts-symbols ttf-droid noto-fonts noto-fonts-emoji
+FONT_PACKAGES=ttf-hack-nerd otf-font-awesome ttf-nerd-fonts-symbols ttf-droid noto-fonts noto-fonts-emoji otf-ipafont
 YAY_PACKAGES=protonup-qt davinci-resolve
 
 # Installation script should add: git neovim chromium
