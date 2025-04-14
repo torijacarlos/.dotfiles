@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-DOTFILES_APPS=wofi waybar kitty zsh nvim tmux bin git
+DOTFILES_APPS=wofi waybar alacritty zsh nvim tmux bin git
 # NOTE: hypr needs separate handling
 
 LAPTOP_PACKAGES=brightnessctl
