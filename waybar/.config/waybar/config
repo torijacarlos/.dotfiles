@@ -12,10 +12,15 @@
 
     "hyprland/workspaces": {
         "show-special": true,
+        "all-outputs": false,
+        "active-only": true,
+        "on-scroll-up": "hyprctl dispatch workspace -1",
         "persistent-workspaces": {
-             "*": 2,
+             "HDMI-A-2": [1, 2, 3],
+             "HDMI-A-1": [4],
         }
     },
+
     "memory": {
         "format": "{}% "
     },
