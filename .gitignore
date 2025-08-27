@@ -2,7 +2,6 @@ bin/.local/share/*
 bin/.local/state/*
 bin/.local/links/*
 bin/.local/.atelier/*
-nvim/.config/nvim/plugin/*
 rust-analyzer
 
 # python global stuff
