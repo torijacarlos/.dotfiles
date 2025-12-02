@@ -16,6 +16,7 @@
         "active-only": true,
         "on-scroll-up": "hyprctl dispatch workspace -1",
         "persistent-workspaces": {
+             "DP-2": [1, 2, 3],
              "HDMI-A-2": [1, 2, 3],
              "HDMI-A-1": [4],
         }
