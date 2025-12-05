@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function create_tmux_session {
+    tmux new-session -ds tca-work -c ~/develop/torija/atlr -n atlr;
+    tmux new-window -t tca-work -c ~/develop/torija/notes -n notes
+    tmux new-session -ds tca-extra -c ~/.local/fusion -n fusion;
+    tmux new-window -t tca-extra -c ~ -n scythe
+
+    tmux send-keys -t tca-work:atlr "v" Enter
+    tmux send-keys -t tca-work:notes "v" Enter
+    tmux send-keys -t tca-extra:fusion "./fusion" Enter
+    tmux send-keys -t tca-extra:scythe "scythe swaybg -d ~/drive/digitalart/illustration -t 300" Enter
+}
+
+
+if ! tmux has-session -t=tca-work 2> /dev/null; then
+    echo "Creating session for tca-work"
+    create_tmux_session
+else
+    tmux attach-session -t tca-work
+fi

@@ -44,8 +44,8 @@ alias rg="rg -i"
 
 ## tmux aliases
 
-alias tw="tmux-session"
-alias twl="tmux-session -l"
+alias tw="tca-work"
+alias ts="tmux-session"
 alias ta="tmux attach"
 alias tks="tmux kill-server"
 

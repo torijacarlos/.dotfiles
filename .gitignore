@@ -12,3 +12,4 @@ bin/.local/bin/nodeenv
 
 # personal builds
 bin/.local/rust/*
+yay-explicit-installs
