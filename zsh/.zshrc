@@ -63,7 +63,7 @@ alias pip="pip3"
 
 ## personal tools 
 
-alias todo="rg todo --no-heading --sort path --trim"
+alias todo="rg todo --no-heading --sort path --trim -g '!_*'"
 alias note="rg note --no-heading --sort path --trim"
 alias mpdf="pandoc --pdf-engine=pdfroff"
 alias tcd="scythe swaybg -d ~/drive/digitalart/illustration"

@@ -87,6 +87,8 @@ tmux-setup:
 			git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
 		fi; \
 	)
+	@echo "====== Installing plugins"
+	@~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 structure:
 	@echo "=== Structure";
