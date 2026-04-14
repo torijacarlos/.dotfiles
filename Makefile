@@ -8,7 +8,7 @@ LAPTOP_PACKAGES=brightnessctl
 
 SYSTEM_PACKAGES=iwd sysfsutils bluez bluez-utils wl-clipboard # qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg 
 
-UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty
+UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
 UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
 UTIL_PACKAGES+=xclip rclone hyprlock swaybg waybar wofi dolphin
 UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
