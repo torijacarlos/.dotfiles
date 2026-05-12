@@ -19,12 +19,12 @@ DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go
 
 FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid 
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
-APP_PACKAGES=chromium krita discord
-# audacity blender
+APP_PACKAGES=chromium krita discord audacity
+# blender
 
 #Need to enable pacman multilib db `/etc/pacman.conf`
 # - steam 
-#
+
 YAY_PACKAGES=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch grimblast
 
 # Installation script should add: git neovim
