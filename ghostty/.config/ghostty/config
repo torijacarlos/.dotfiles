@@ -1,7 +1,7 @@
 term = xterm-256color
 
 font-family = Hack Nerd Font
-font-size = 16
+font-size = 12
 
 background-opacity = 0.85
 window-save-state = always
