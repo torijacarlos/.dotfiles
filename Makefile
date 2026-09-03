@@ -12,7 +12,7 @@ UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
 UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
 UTIL_PACKAGES+=xclip rclone hyprlock swaybg waybar wofi dolphin
 UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
-UTIL_PACKAGES+=pastel
+UTIL_PACKAGES+=pastel freecad gnome-keyring
 
 DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack 
 DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go
@@ -25,7 +25,8 @@ APP_PACKAGES=chromium krita discord audacity
 #Need to enable pacman multilib db `/etc/pacman.conf`
 # - steam 
 
-YAY_PACKAGES=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch grimblast
+#YAY_PACKAGES=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch grimblast
+YAY_PACKAGES=orca-slicer-bin
 
 # Installation script should add: git neovim
 
