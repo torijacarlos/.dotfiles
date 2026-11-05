@@ -21,12 +21,14 @@ FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
 APP_PACKAGES=chromium krita discord audacity
 # blender
+# installed here, never called out: glfw cmark mbedtls sdl3_image sdl3_ttf ollama opencode jdk-openjdk (bluetui: laptop)
 
 #Need to enable pacman multilib db `/etc/pacman.conf`
 # - steam 
 
 #YAY_PACKAGES=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch grimblast
 YAY_PACKAGES=orca-slicer-bin
+# aur side, never called out: yay-bin minecraft-launcher grimblast-git
 
 # Installation script should add: git neovim
 

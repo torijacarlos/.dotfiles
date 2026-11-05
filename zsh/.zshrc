@@ -66,7 +66,6 @@ alias pip="pip3"
 alias todo="rg todo --no-heading --sort path --trim -g '!_*'"
 alias note="rg note --no-heading --sort path --trim"
 alias mpdf="pandoc --pdf-engine=pdfroff"
-alias tcd="scythe swaybg -d ~/drive/digitalart/illustration"
 alias tbg="swaybg -i ~/drive/drawing/bg.png --mode fill"
 
 ## stuff
