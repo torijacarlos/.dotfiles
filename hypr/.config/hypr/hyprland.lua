@@ -130,11 +130,16 @@ hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "a
 ---- WORKSPACES ----
 ------------------
 
-hl.workspace_rule({ workspace = "1", monitor = mainMonitor, on_created_empty = terminal, default = true })
+hl.on("workspace.created", function (ws)
+    if ws.name == "1" and ws.is_empty then
+        hl.exec_cmd(terminal)
+    end
+end)
 hl.workspace_rule({ workspace = "2", monitor = mainMonitor })
 hl.workspace_rule({ workspace = "3", monitor = mainMonitor })
 hl.workspace_rule({ workspace = "4", monitor = "desc:BOE 0x092F" })
 hl.workspace_rule({ workspace = "5", monitor = "desc:HAT Kamvas Pro 16 0x01010101", default = true })
+
 
 -----------
 ---- INPUT ----
