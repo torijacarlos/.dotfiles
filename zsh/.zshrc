@@ -63,6 +63,7 @@ alias pip="pip3"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export LLVM_CONFIG="/usr/bin/llvm-config"
 
 ## personal tools 
 
