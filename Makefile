@@ -6,7 +6,9 @@ DOTFILES_APPS=wofi waybar ghostty zsh nvim tmux bin git
 
 LAPTOP_PACKAGES=brightnessctl
 
-SYSTEM_PACKAGES=iwd sysfsutils bluez bluez-utils wl-clipboard # qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg 
+# TODO: iwd vs NetworkManager
+SYSTEM_PACKAGES =sysfsutils bluez bluez-utils wl-clipboard 
+SYSTEM_PACKAGES+=qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg # used by sddm
 
 UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
 UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
