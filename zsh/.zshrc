@@ -61,6 +61,9 @@ alias tks="tmux kill-server"
 alias python="python3"
 alias pip="pip3"
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 ## personal tools 
 
 alias todo="rg todo --no-heading --sort path --trim -g '!_*'"
