@@ -15,13 +15,13 @@ UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
 UTIL_PACKAGES+=pastel freecad gnome-keyring
 
 DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack 
-DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go
+DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf
 
 FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid 
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
 APP_PACKAGES=chromium krita discord audacity
 # blender
-# installed here, never called out: glfw cmark mbedtls sdl3_image sdl3_ttf ollama opencode jdk-openjdk ufw (bluetui: laptop)
+# installed here, never called out: glfw mbedtls ollama opencode jdk-openjdk ufw sqlite rsync (bluetui: laptop)
 
 #Need to enable pacman multilib db `/etc/pacman.conf`
 # - steam 
