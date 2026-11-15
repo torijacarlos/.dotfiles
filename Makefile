@@ -14,23 +14,20 @@ UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
 UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
 UTIL_PACKAGES+=xclip rclone hyprlock swaybg waybar wofi dolphin
 UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
-UTIL_PACKAGES+=pastel freecad gnome-keyring
+UTIL_PACKAGES+=pastel freecad gnome-keyring rsync 
 
-DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack 
-DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf
+DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack glfw mbedtls
+DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf jdk-openjdk
 
 FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid 
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
-APP_PACKAGES=chromium krita discord audacity
-# blender
-# installed here, never called out: glfw mbedtls ollama opencode jdk-openjdk ufw sqlite rsync (bluetui: laptop)
 
-#Need to enable pacman multilib db `/etc/pacman.conf`
-# - steam 
+APP_PACKAGES=chromium krita discord audacity steam
 
-#YAY_PACKAGES=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch grimblast
-YAY_PACKAGES=orca-slicer-bin
-# aur side, never called out: yay-bin minecraft-launcher grimblast-git
+# installed here, never called out: ollama opencode ufw sqlite (bluetui: laptop)
+
+YAY_PACKAGES =orca-slicer-bin minecraft-launcher grimblast-git
+#YAY_PACKAGES+=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch
 
 # Installation script should add: git neovim
 
