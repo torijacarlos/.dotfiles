@@ -79,3 +79,7 @@ if hash aactivator 2>/dev/null; then
     eval "$(aactivator init)"
 fi
 
+if [[ -n $SSH_CONNECTION ]]; then
+    PROMPT="%F{red}[%m]%f $PROMPT"
+fi
+
