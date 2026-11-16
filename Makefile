@@ -14,7 +14,7 @@ UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
 UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
 UTIL_PACKAGES+=xclip rclone hyprlock swaybg waybar wofi dolphin
 UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
-UTIL_PACKAGES+=pastel freecad gnome-keyring rsync 
+UTIL_PACKAGES+=pastel hyprpicker freecad gnome-keyring rsync 
 
 DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack glfw mbedtls
 DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf jdk-openjdk
