@@ -12,13 +12,10 @@
 
     "hyprland/workspaces": {
         "show-special": true,
-        "all-outputs": false,
         "active-only": true,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "disable-scroll": false,
         "persistent-workspaces": {
-             "*": [1, 2, 3],
-             "eDP-1": [4]
+             "*": [1, 2, 3]
         }
     },
 

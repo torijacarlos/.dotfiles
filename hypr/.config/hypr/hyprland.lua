@@ -30,7 +30,7 @@ hl.monitor({
 hl.monitor({
     output   = "desc:HAT Kamvas Pro 16 0x01010101",
     mode     = "preferred",
-    position = "0x1200",
+    position = "0x1080",
     scale    = "1",
 })
 
@@ -138,7 +138,7 @@ end)
 hl.workspace_rule({ workspace = "2", monitor = mainMonitor })
 hl.workspace_rule({ workspace = "3", monitor = mainMonitor })
 hl.workspace_rule({ workspace = "4", monitor = "desc:BOE 0x092F" })
-hl.workspace_rule({ workspace = "5", monitor = "desc:HAT Kamvas Pro 16 0x01010101", default = true })
+hl.workspace_rule({ workspace = "4", monitor = "desc:HAT Kamvas Pro 16 0x01010101", default = true })
 
 
 -----------
@@ -222,11 +222,26 @@ hl.bind("ALT + SHIFT + period", hl.dsp.window.move({ workspace = "3", follow = f
 hl.bind("ALT + SHIFT + N", hl.dsp.window.move({ workspace = "4", follow = false }))
 
 -- Scratchpad
-hl.bind("ALT + H", hl.dsp.window.move({ workspace = "special:s", follow = false }))
+hl.bind("ALT + H", function()
+    local w = hl.get_active_window()
+    if w and ((w.class or "") .. " " .. (w.title or "")):lower():find("blender", 1, true) then
+        return { ok = false } -- don't consume; Blender gets the click
+    end
+    hl.dispatch(hl.dsp.window.move({ workspace = "special:s", follow = false }))
+end, { mouse = true, auto_consuming = true })
+
+
 hl.bind("ALT + SHIFT + H", hl.dsp.workspace.toggle_special("s"))
 
--- Move windows with mouse dragging
-hl.bind("ALT + SHIFT + mouse:272", hl.dsp.window.drag(), { mouse = true })
+-- Move windows with mouse dragging. skip blender
+hl.bind("ALT + SHIFT + mouse:272", function()
+    local w = hl.get_active_window()
+    if w and ((w.class or "") .. " " .. (w.title or "")):lower():find("blender", 1, true) then
+        return { ok = false } -- don't consume; Blender gets the click
+    end
+    hl.dispatch(hl.dsp.window.drag())
+end, { mouse = true, auto_consuming = true })
+
 hl.bind("ALT + SHIFT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
@@ -255,13 +270,6 @@ hl.window_rule({
     suppress_event = "maximize",
 })
 
--- Float Dolphin file manager
-hl.window_rule({
-    name  = "float-dolphin",
-    match = { class = [[^(org\.kde\.dolphin)$]] },
-    float = true,
-})
-
 -- Float dialogs
 hl.window_rule({
     name  = "float-open-file",
@@ -287,3 +295,4 @@ hl.window_rule({
     match = { title = [[^(Picture-in-Picture)$]] },
     float = true,
 })
+
