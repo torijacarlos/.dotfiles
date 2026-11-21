@@ -62,6 +62,8 @@
         "format-icons": ["", "", "", "", ""]
     },
     "temperature": {
+        "hwmon-by-name": "k10temp",
+        "input-filename": "temp1_input",
         "critical-threshold": 70,
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
