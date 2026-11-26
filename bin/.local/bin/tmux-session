@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FOLDER=~/develop
-DEPTH=2
+FOLDER=~/kura/code
+DEPTH=1
 
 selected=$(find $FOLDER -mindepth $DEPTH -maxdepth $DEPTH -type d | fzf)
 
@@ -14,10 +14,10 @@ tmux_running=$(pgrep tmux)
 
 
 function create_tmux_session {
-    tmux new-session -ds $selected_name -c $selected -n Vim;
-    tmux send-keys -t $selected_name:Vim "v" Enter
-    tmux new-window -t $selected_name -c $selected -n Utilities
-    tmux select-window -t $selected_name:Vim
+    tmux new-session -ds $selected_name -c $selected -n atlr;
+    tmux send-keys -t $selected_name:atlr "v" Enter
+    tmux new-window -t $selected_name -c $selected -n tools;
+    tmux select-window -t $selected_name:atlr
 }
 
 

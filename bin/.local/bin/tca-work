@@ -1,24 +1,23 @@
 #!/bin/bash
 
 function create_tmux_session {
-    tmux new-session -ds tca-work -c ~/kura/code/atlr -n atlr;
-    tmux new-window -t tca-work -c ~/kura/code/atlr -n tools;
-    tmux new-session -ds tca-extra -n atlr
-    tmux new-window -t tca-extra -c ~/.dotfiles -n dotfiles;
-    tmux new-window -t tca-extra -n ollama;
+    tmux new-session -ds work -c ~/kura/code/atlr -n atlr;
+    tmux new-window -t work -c ~/kura/code/atlr -n tools;
+    tmux new-session -ds house -n atlr
+    tmux new-window -t house -c ~/.dotfiles -n dotfiles;
+    tmux new-window -t house -n ollama;
 
-    tmux send-keys -t tca-work:atlr "v" Enter
-    tmux send-keys -t tca-work:notes "v" Enter
+    tmux send-keys -t work:atlr "v" Enter
 
-    tmux send-keys -t tca-extra:atlr "atlrbg -d ~/kura/art/digitalart/illustration -t 300" Enter
-    tmux send-keys -t tca-extra:dotfiles "v" Enter
-    tmux send-keys -t tca-extra:ollama "ollama serve" Enter
+    tmux send-keys -t house:atlr "atlrbg -d ~/kura/art/digitalart/illustration -t 300" Enter
+    tmux send-keys -t house:dotfiles "v" Enter
+    tmux send-keys -t house:ollama "ollama serve" Enter
 }
 
 
-if ! tmux has-session -t=tca-work 2> /dev/null; then
-    echo "Creating session for tca-work"
+if ! tmux has-session -t=work 2> /dev/null; then
+    echo "Creating sessions: work (code) + house (the atelier)"
     create_tmux_session
 fi
 
-tmux attach-session -t tca-work
+tmux attach-session -t work
