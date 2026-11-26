@@ -4,27 +4,12 @@ source "${HOME}/.config/vault.env" || exit 1
 echo "========= snapshot"
 sqlite3 "${HOME}/.atlr/atelier.db" ".backup ${HOME}/.atlr/snap/atelier.db" || exit 1
 
-# code
-echo "========= code"
-echo "---------- atlr"
-GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i '${HOME}/.ssh/rsync_git git -C ${HOME}/kura/code/atlr push --force \
-    ssh://de5424@de5424.rsync.net/code/atlr.git HEAD || exit 1
-echo "---------- .dotfiles"
-GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i '${HOME}/.ssh/rsync_git git -C ${HOME}/.dotfiles push --force \
-    ssh://de5424@de5424.rsync.net/code/.dotfiles.git HEAD || exit 1
-echo "---------- odin"
-GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i '${HOME}/.ssh/rsync_git git -C ${HOME}/kura/code/odin push --force \
-    ssh://de5424@de5424.rsync.net/code/odin.git HEAD || exit 1
-echo "---------- ols"
-GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i '${HOME}/.ssh/rsync_git git -C ${HOME}/kura/code/ols push --force \
-    ssh://de5424@de5424.rsync.net/code/ols.git HEAD || exit 1
-echo "---------- sqlite"
-GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i '${HOME}/.ssh/rsync_git git -C ${HOME}/kura/code/sqlite push --force \
-    ssh://de5424@de5424.rsync.net/code/sqlite.git HEAD || exit 1
-
 # core
 echo "========= core"
 export BORG_PASSPHRASE="$BORG_PASSPHRASE_CORE"
+echo "---------- code-"
+borg create -C zstd --stats \
+    "ssh://vault/./vault/core.borg::code-$(date +%Y%m%d-%H%M)" "${HOME}/kura/code" "${HOME}/.dotfiles" || exit 1
 echo "---------- atlr-"
 borg create -C zstd --stats \
     --exclude 'home/torija/kura/atlr/atelier.db' \

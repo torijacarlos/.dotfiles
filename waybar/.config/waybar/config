@@ -8,7 +8,13 @@
     "spacing": 4,
 
     "modules-left": ["hyprland/workspaces", "memory", "cpu", "pulseaudio", "backlight"],
-    "modules-right": ["network", "battery", "temperature", "bluetooth", "sway/language", "clock#date", "clock"],
+    "modules-right": ["network", "battery", "temperature", "bluetooth", "sway/language", "custom/vault", "clock#date", "clock"],
+
+    "custom/vault": {
+        "exec": "~/.local/bin/vault-status",
+        "return-type": "json",
+        "interval": 300
+    },
 
     "hyprland/workspaces": {
         "show-special": true,
@@ -73,7 +79,7 @@
         "format-connected-battery": "{device_battery_percentage}% "
     },
     "clock#date": {
-        "timezone": "America/Mexico City",
+        "timezone": "America/Mexico_City",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "  {:%d %b, %Y}"
     },

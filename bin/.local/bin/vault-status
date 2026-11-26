@@ -1,0 +1,50 @@
+#!/bin/bash
+# vault-status: waybar module — is vault actually running?
+
+human() {
+    local s=$(( $(date +%s) - $(date -d "$1" +%s) ))
+    if   [ "$s" -lt 7200 ];   then printf '%dm' $((s/60))
+    elif [ "$s" -lt 172800 ]; then printf '%dh' $((s/3600))
+    else                           printf '%dd' $((s/86400))
+    fi
+}
+
+stage() {
+    local t=$1 max=$2 res ts age epoch
+    if ! systemctl --user is-enabled "$t.timer" &>/dev/null; then printf 'off -'; return; fi
+    res=$(systemctl --user show "$t.service" --property=Result --value)
+    ts=$(systemctl --user show "$t.service" --property=ExecMainStartTimestamp --value)
+    if [ -z "$ts" ]; then printf 'ok ⏳'; return; fi
+    epoch=$(date -d "$ts" +%s)
+    age=$(human "$ts")
+    state=$(systemctl --user show "$t.service" --property=ActiveState --value)
+    if [ "$state" = activating ]; then printf 'run ▶ %s' "$age"; return; fi
+    if [ "$res" != success ]; then printf 'fail ❌ %s' "$age"; return; fi
+    if [ $(( $(date +%s) - epoch )) -gt $max ]; then printf 'warn ⚠ %s' "$age"; return; fi
+    printf 'ok %s' "$age"
+}
+
+read -r dd dage <<< "$(stage vault-daily 172800)"
+read -r wd wage <<< "$(stage vault-weekly 777600)"
+
+class=$dd
+[ "$wd" = fail ] && class=fail
+if [ "$class" != fail ] && { [ "$dd" = warn ] || [ "$wd" = warn ]; }; then class=warn; fi
+[ "$class" = off ] && class=off
+
+if [ "$class" = off ]; then
+    text="vault ⊘"
+elif [ "$dage" = "⏳" ]; then
+    text="vault ⏳"
+elif [ "$class" = fail ]; then
+    text=$(printf 'vault ❌ %s/%s' "$dage" "$wage")
+elif [ "$class" = warn ]; then
+    text=$(printf 'vault ⚠ %s/%s' "$dage" "$wage")
+else
+    text=$(printf 'vault %s/%s' "$dage" "$wage")
+fi
+
+tooltip=$(printf 'daily: %s %s · weekly: %s %s · journalctl --user -u vault-daily.service' \
+    "$dd" "$dage" "$wd" "$wage")
+
+printf '{"text": "%s", "class": "%s", "tooltip": "%s"}\n' "$text" "$class" "$tooltip"

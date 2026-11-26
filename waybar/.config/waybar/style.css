@@ -151,3 +151,16 @@ button:hover {
     color: #EEE;
     margin-right: 0px;
 }
+
+#custom-vault {
+    color: #A6E3A1;
+}
+
+#custom-vault.warn {
+    color: #F9E2AF;
+}
+
+#custom-vault.fail,
+#custom-vault.off {
+    color: #F38BA8;
+}
