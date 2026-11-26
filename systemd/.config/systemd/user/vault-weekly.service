@@ -1,0 +1,6 @@
+[Unit]
+Description=weekly vault push (media shelves, append-only)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/bin/.local/bin/vault-weekly

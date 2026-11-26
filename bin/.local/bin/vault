@@ -1,0 +1,3 @@
+#!/bin/bash
+"${HOME}/.dotfiles/bin/.local/bin/vault-daily" || exit 1
+"${HOME}/.dotfiles/bin/.local/bin/vault-weekly" || exit 1

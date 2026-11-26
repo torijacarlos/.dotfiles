@@ -1,0 +1,22 @@
+#!/bin/bash
+source "${HOME}/.config/vault.env" || exit 1
+
+what="${1:?usage: vault-restore [atlr|docs|art|media] <dest>}"
+dest="${2:?usage: vault-restore [atlr|docs|art|media] <dest>}"
+
+case "$what" in
+  atlr|docs) repo=core; pass="$BORG_PASSPHRASE_CORE" ;;
+  art|media) repo=media; pass="$BORG_PASSPHRASE_MEDIA" ;;
+  *) echo "unknown class: $what"; exit 1 ;;
+esac
+[ -d "$dest" ] || { echo "no such dest: $dest"; exit 1; }
+
+latest=$(BORG_PASSPHRASE="$pass" borg list --short \
+    "ssh://vault/./vault/${repo}.borg" 2>/dev/null | grep "^${what}-" | sort | tail -1)
+[ -z "$latest" ] && { echo "no ${what}-* archive on the vault"; exit 1; }
+
+echo "restoring ${latest} → ${dest}/${what}"
+cd "$dest" || exit 1
+BORG_PASSPHRASE="$pass" borg extract --strip-components=3 \
+    "ssh://vault/./vault/${repo}.borg::${latest}" || exit 1
+echo "restored: ${latest} → ${dest}/${what}"

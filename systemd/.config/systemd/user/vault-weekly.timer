@@ -1,0 +1,8 @@
+[Unit]
+Description=weekly vault push timer
+
+[Timer]
+OnUnitActiveSec=7d
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,25 @@
+#!/bin/bash
+source "${HOME}/.config/vault.env" || exit 1
+export BORG_PASSPHRASE="$BORG_PASSPHRASE_MEDIA"
+
+# media
+echo "========= media"
+unit_limit=8192
+unit_depth=4
+media_units() {
+    local d=$1 dep=${2:-1} c
+    if [ "$dep" -ge "$unit_depth" ] \
+       || [ "$(du -sm "$d" | cut -f1)" -le "$unit_limit" ] \
+       || [ -z "$(find "$d" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print -quit)" ]; then
+        printf '%s\n' "$d"
+        return
+    fi
+    while read -r c; do media_units "$c" $((dep+1)); done < <(find "$d" -mindepth 1 -maxdepth 1 \
+        -type d -not -name '.*' | sort)
+}
+while read -r d; do
+    slug=${d#"${HOME}/kura/"}
+    echo "---------- ${slug//\//-}"
+    borg create -C zstd --stats \
+        "ssh://vault/./vault/media.borg::${slug//\//-}-$(date +%Y%m%d-%H%M)" "$d" || exit 1
+done < <(media_units "${HOME}/kura/media")

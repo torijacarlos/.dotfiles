@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 OH_MY_ZSH_INSTALL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
-DOTFILES_APPS=wofi waybar ghostty zsh nvim tmux bin git
+DOTFILES_APPS=wofi waybar ghostty zsh nvim tmux bin git systemd
 
 LAPTOP_PACKAGES=brightnessctl
 
@@ -111,6 +111,12 @@ ufw-setup:
 	@sudo ufw default disabled routed
 	@sudo ufw allow from 192.168.0.0/24 to any port 22 proto tcp comment 'ssh lan'
 	@sudo ufw status verbose
+
+vault-setup:
+	@echo "=== VAULT TIMERS";
+	@systemctl --user daemon-reload
+	@systemctl --user enable --now vault-daily.timer vault-weekly.timer
+	@systemctl --user list-timers --no-pager | head -5
 
 syncthing-setup:
 	@echo "=== SYNCTHING";

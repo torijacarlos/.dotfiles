@@ -1,0 +1,6 @@
+[Unit]
+Description=daily vault push (house state + code, append-only)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/bin/.local/bin/vault-daily
