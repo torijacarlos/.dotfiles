@@ -7,16 +7,19 @@ DOTFILES_APPS=wofi waybar ghostty zsh nvim tmux bin git
 LAPTOP_PACKAGES=brightnessctl
 
 # TODO: iwd vs NetworkManager
-SYSTEM_PACKAGES =sysfsutils bluez bluez-utils wl-clipboard ufw
-SYSTEM_PACKAGES+=qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg # used by sddm
+SYSTEM_PACKAGES =sysfsutils bluez bluez-utils ufw reflector
+SYSTEM_PACKAGES+=man-db man-pages tree
 
-UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
-UTIL_PACKAGES+=ncdu btop nethogs iftop nvtop bottom reflector 
-UTIL_PACKAGES+=xclip hyprlock swaybg waybar wofi dolphin
-UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
-UTIL_PACKAGES+=pastel hyprpicker freecad gnome-keyring
+UTIL_PACKAGES =tmux stow fzf ripgrep tig
+UTIL_PACKAGES+=ncdu btop nethogs iftop nvtop bottom
+UTIL_PACKAGES+=unzip imagemagick pastel
 
 STORAGE_PACKAGES =rsync syncthing
+
+DESKTOP_PACKAGES =ghostty waybar wofi hyprlock swaybg grim
+DESKTOP_PACKAGES+=wl-clipboard xclip hyprpicker
+DESKTOP_PACKAGES+=fcitx5-im fcitx5-anthy dolphin gnome-keyring
+DESKTOP_PACKAGES+=qt5-graphicaleffects qt5-quickcontrols2 qt5-svg # used by sddm
 
 DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack glfw mbedtls
 DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf jdk-openjdk
@@ -24,9 +27,9 @@ DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3
 FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid 
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
 
-APP_PACKAGES=chromium krita discord audacity steam libreoffice-fresh
+APP_PACKAGES=chromium krita discord audacity steam libreoffice-fresh freecad
 
-# installed here, never called out: ollama opencode ufw sqlite (bluetui: laptop)
+# installed here, never called out: ollama opencode sqlite (bluetui: laptop)
 
 YAY_PACKAGES =orca-slicer-bin minecraft-launcher grimblast-git
 #YAY_PACKAGES+=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch
@@ -52,6 +55,7 @@ base:
 	@sudo pacman -S $(SYSTEM_PACKAGES);
 	@sudo pacman -S $(UTIL_PACKAGES); 
 	@sudo pacman -S $(STORAGE_PACKAGES);
+	@sudo pacman -S $(DESKTOP_PACKAGES);
 	@sudo pacman -S $(DEV_PACKAGES); 
 	@sudo pacman -S $(FONT_PACKAGES);
 	@sudo pacman -S $(APP_PACKAGES);
