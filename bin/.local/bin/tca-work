@@ -1,16 +1,18 @@
 #!/bin/bash
 
 function create_tmux_session {
-    tmux new-session -ds tca-work -c ~/develop/torija/atlr -n atlr;
-    tmux new-window -t tca-work -c ~/develop/torija/atlr -n tools;
+    tmux new-session -ds tca-work -c ~/kura/code/atlr -n atlr;
+    tmux new-window -t tca-work -c ~/kura/code/atlr -n tools;
     tmux new-session -ds tca-extra -n atlr
     tmux new-window -t tca-extra -c ~/.dotfiles -n dotfiles;
+    tmux new-window -t tca-extra -n ollama;
 
     tmux send-keys -t tca-work:atlr "v" Enter
     tmux send-keys -t tca-work:notes "v" Enter
 
-    tmux send-keys -t tca-extra:atlr "atlrbg -d ~/drive/digitalart/illustration -t 300" Enter
+    tmux send-keys -t tca-extra:atlr "atlrbg -d ~/kura/art/digitalart/illustration -t 300" Enter
     tmux send-keys -t tca-extra:dotfiles "v" Enter
+    tmux send-keys -t tca-extra:ollama "ollama serve" Enter
 }
 
 

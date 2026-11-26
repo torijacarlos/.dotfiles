@@ -7,14 +7,16 @@ DOTFILES_APPS=wofi waybar ghostty zsh nvim tmux bin git
 LAPTOP_PACKAGES=brightnessctl
 
 # TODO: iwd vs NetworkManager
-SYSTEM_PACKAGES =sysfsutils bluez bluez-utils wl-clipboard 
+SYSTEM_PACKAGES =sysfsutils bluez bluez-utils wl-clipboard ufw
 SYSTEM_PACKAGES+=qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg # used by sddm
 
 UTIL_PACKAGES =fzf ripgrep tig tmux stow man-db man-pages ghostty imagemagick
-UTIL_PACKAGES+=ncdu btop iftop nvtop bottom reflector 
-UTIL_PACKAGES+=xclip rclone hyprlock swaybg waybar wofi dolphin
+UTIL_PACKAGES+=ncdu btop nethogs iftop nvtop bottom reflector 
+UTIL_PACKAGES+=xclip hyprlock swaybg waybar wofi dolphin
 UTIL_PACKAGES+=unzip tree fcitx5-im fcitx5-anthy grim
-UTIL_PACKAGES+=pastel hyprpicker freecad gnome-keyring rsync 
+UTIL_PACKAGES+=pastel hyprpicker freecad gnome-keyring
+
+STORAGE_PACKAGES =rsync syncthing
 
 DEV_PACKAGES =base base-devel cmake clang llvm clang-tools-extra gdb heaptrack glfw mbedtls
 DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3_ttf jdk-openjdk
@@ -22,7 +24,7 @@ DEV_PACKAGES+=jq raylib lua aws-cli lua-language-server go cmark sdl3_image sdl3
 FONT_PACKAGES =ttf-hack-nerd ttf-nerd-fonts-symbols ttf-droid 
 FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
 
-APP_PACKAGES=chromium krita discord audacity steam
+APP_PACKAGES=chromium krita discord audacity steam libreoffice-fresh
 
 # installed here, never called out: ollama opencode ufw sqlite (bluetui: laptop)
 
@@ -49,6 +51,7 @@ base:
 	@sudo pacman -Syy;
 	@sudo pacman -S $(SYSTEM_PACKAGES);
 	@sudo pacman -S $(UTIL_PACKAGES); 
+	@sudo pacman -S $(STORAGE_PACKAGES);
 	@sudo pacman -S $(DEV_PACKAGES); 
 	@sudo pacman -S $(FONT_PACKAGES);
 	@sudo pacman -S $(APP_PACKAGES);
@@ -92,11 +95,35 @@ tmux-setup:
 	@echo "====== Installing plugins"
 	@~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
+ufw-setup:
+	@echo "=== UFW";
+	@sudo ufw --force enable
+	@sudo systemctl enable --now ufw
+	@sudo ufw default deny incoming
+	@sudo ufw default allow outgoing
+	@sudo ufw default disabled routed
+	@sudo ufw allow from 192.168.0.0/24 to any port 22 proto tcp comment 'ssh lan'
+	@sudo ufw status verbose
+
+syncthing-setup:
+	@echo "=== SYNCTHING";
+	@systemctl --user enable --now syncthing.service
+	@sleep 2; \
+	key=$$(grep -oE '<apikey>[^<]+' $${HOME}/.local/state/syncthing/config.xml | cut -d'>' -f2); \
+	curl -skL -H "X-API-Key: $$key" https://127.0.0.1:8384/rest/config/options | \
+	python3 -c "import json,sys; o=json.load(sys.stdin); o['relaysEnabled']=False; o['globalAnnounceEnabled']=False; o['natEnabled']=False; print(json.dumps(o))" | \
+	curl -skL -X PUT -H "X-API-Key: $$key" -H "Content-Type: application/json" -d @- https://127.0.0.1:8384/rest/config/options >/dev/null; \
+	sudo ufw allow from 192.168.0.0/24 to any port 22000 proto tcp || true; \
+	sudo ufw allow from 192.168.0.0/24 to any port 21027 proto udp || true; \
+	echo "=== strict posture: relays off, global announce off, nat off, lan-direct only"
+	@echo "=== pairing one-human step: GUI https://127.0.0.1:8384, folder ~/kura/media/photos/mobile, receive-only, phone send-only"
+
 structure:
 	@echo "=== Structure";
-	@mkdir -p ~/drive;
-	@mkdir -p ~/develop/oss;
-	@mkdir -p ~/develop/torija;
+	@mkdir -p ~/kura/code;
+	@mkdir -p ~/kura/docs/personal ~/kura/docs/finance;
+	@mkdir -p ~/kura/art/pixelart ~/kura/art/digitalart ~/kura/art/drawing ~/kura/art/3d ~/kura/art/reference;
+	@mkdir -p ~/kura/media/photos/camera ~/kura/media/photos/mobile ~/kura/media/games ~/kura/media/courses;
 
 sddm-theme:
 	@echo "=== SDDM Theme";

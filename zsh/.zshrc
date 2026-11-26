@@ -23,8 +23,8 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
 ### odin
-export PATH="$HOME/develop/oss/Odin:$PATH"
-export PATH="$HOME/develop/oss/ols:$PATH"
+export PATH="$HOME/kura/code/Odin:$PATH"
+export PATH="$HOME/kura/code/ols:$PATH"
 
 ## export for fcitx
 
@@ -45,9 +45,8 @@ alias v="nvim"
 
 ## simplified commands
 
-alias rpull="rclone copy drive:/sync/ ~/drive"
-alias rpush="rclone sync ~/drive drive:/sync"
 alias rg="rg -i"
+alias tortoise="rsync -a --delete --exclude lost+found /home/torija/kura/ /mnt/tortoise/kura/"
 
 ## tmux aliases
 
@@ -70,7 +69,6 @@ export LLVM_CONFIG="/usr/bin/llvm-config"
 alias todo="rg todo --no-heading --sort path --trim -g '!_*'"
 alias note="rg note --no-heading --sort path --trim"
 alias mpdf="pandoc --pdf-engine=pdfroff"
-alias tbg="swaybg -i ~/drive/drawing/bg.png --mode fill"
 
 ## stuff
 autoload -U compinit

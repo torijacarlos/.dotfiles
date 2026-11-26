@@ -16,12 +16,12 @@ end)
 
 vim.keymap.set('n', '<leader>fO', function()
   builtin.find_files {
-    cwd = '~/develop/oss/Odin/',
+    cwd = '~/kura/code/Odin/',
   }
 end)
 vim.keymap.set('n', '<leader>fo', function()
   builtin.live_grep {
-    cwd = '~/develop/oss/Odin/',
+    cwd = '~/kura/code/Odin/',
   }
 end)
 
