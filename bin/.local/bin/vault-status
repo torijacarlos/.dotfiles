@@ -3,8 +3,8 @@
 
 human() {
     local s=$(( $(date +%s) - $(date -d "$1" +%s) ))
-    if   [ "$s" -lt 7200 ];   then printf '%dm' $((s/60))
-    elif [ "$s" -lt 172800 ]; then printf '%dh' $((s/3600))
+    if   [ "$s" -lt 3600 ];   then printf '%dm' $((s/60))
+    elif [ "$s" -lt 86400 ]; then printf '%dh' $((s/3600))
     else                           printf '%dd' $((s/86400))
     fi
 }
@@ -18,7 +18,7 @@ stage() {
     epoch=$(date -d "$ts" +%s)
     age=$(human "$ts")
     state=$(systemctl --user show "$t.service" --property=ActiveState --value)
-    if [ "$state" = activating ]; then printf 'run ▶ %s' "$age"; return; fi
+    if [ "$state" = activating ]; then printf 'run ▶'; return; fi
     if [ "$res" != success ]; then printf 'fail ❌ %s' "$age"; return; fi
     if [ $(( $(date +%s) - epoch )) -gt $max ]; then printf 'warn ⚠ %s' "$age"; return; fi
     printf 'ok %s' "$age"

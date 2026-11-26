@@ -1,14 +1,16 @@
 {
     "position": "bottom",
-    "height": 30,
+    "height": 35,
     "margin-top": 0,
-    "margin-bottom": 20,
-    "margin-left": 20,
-    "margin-right": 20,
-    "spacing": 4,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "spacing": 0,
+    "margin": 0,
+    "padding": 0,
 
     "modules-left": ["hyprland/workspaces", "memory", "cpu", "pulseaudio", "backlight"],
-    "modules-right": ["network", "battery", "temperature", "bluetooth", "sway/language", "custom/vault", "clock#date", "clock"],
+    "modules-right": ["network", "battery", "temperature", "bluetooth", "custom/vault", "clock#date", "clock"],
 
     "custom/vault": {
         "exec": "~/.local/bin/vault-status",
@@ -22,18 +24,21 @@
         "disable-scroll": false,
         "persistent-workspaces": {
              "*": [1, 2, 3]
-        }
+        },
+        "tooltip": false,
     },
 
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "tooltip": false,
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
+        "tooltip": false,
         "format": "{volume}% {icon}",
         "format-muted": "",
         "format-icons": {
@@ -41,6 +46,7 @@
         }
     },
     "backlight": {
+        "tooltip": false,
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
@@ -54,7 +60,9 @@
 
 
     "network": {
-        "format-wifi": "⬆️ {bandwidthUpBits} - {bandwidthDownBits} ⬇️| {signalStrength}% ",
+        "tooltip": true,
+        "tooltip-format": "{essid} {ifname} ({ipaddr})",
+        "format-wifi": "⬆️ {bandwidthUpBits} - {bandwidthDownBits} ⬇️ | {signalStrength}% ",
         "format-disconnected": "Disconnected ⚠",
     },
     "battery": {
@@ -65,14 +73,16 @@
         "format": "{capacity}% {icon}",
         "format-alt": "{time} {icon}",
         "format-full": "{icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false,
     },
     "temperature": {
         "hwmon-by-name": "k10temp",
         "input-filename": "temp1_input",
         "critical-threshold": 70,
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""],
+        "tooltip": false,
     },
     "bluetooth": {
         "format": "",
@@ -85,6 +95,7 @@
     },
 
     "clock": {
-        "timezone": "America/Mexico City",
+        "timezone": "America/Mexico_City",
+        "tooltip": false,
     },
 }
