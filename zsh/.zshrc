@@ -23,7 +23,7 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
 ### odin
-export PATH="$HOME/kura/code/Odin:$PATH"
+export PATH="$HOME/kura/code/odin:$PATH"
 export PATH="$HOME/kura/code/ols:$PATH"
 
 ## export for fcitx

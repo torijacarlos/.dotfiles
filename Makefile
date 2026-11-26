@@ -14,7 +14,9 @@ UTIL_PACKAGES =tmux stow fzf ripgrep tig
 UTIL_PACKAGES+=ncdu btop nethogs iftop nvtop bottom
 UTIL_PACKAGES+=unzip imagemagick pastel
 
-STORAGE_PACKAGES =rsync syncthing
+STORAGE_PACKAGES =rsync syncthing borg
+
+HOUSE_PACKAGES =ollama sqlite
 
 DESKTOP_PACKAGES =ghostty waybar wofi hyprlock swaybg grim
 DESKTOP_PACKAGES+=wl-clipboard xclip hyprpicker
@@ -29,7 +31,7 @@ FONT_PACKAGES+=noto-fonts noto-fonts-emoji otf-font-awesome otf-ipafont
 
 APP_PACKAGES=chromium krita discord audacity steam libreoffice-fresh freecad
 
-# installed here, never called out: ollama opencode sqlite (bluetui: laptop)
+# installed here, never called out: opencode (bluetui: laptop)
 
 YAY_PACKAGES =orca-slicer-bin minecraft-launcher grimblast-git
 #YAY_PACKAGES+=protonup-qt davinci-resolve obs-studio-tytan652 darktable neofetch
@@ -57,6 +59,7 @@ base:
 	@sudo pacman -S $(STORAGE_PACKAGES);
 	@sudo pacman -S $(DESKTOP_PACKAGES);
 	@sudo pacman -S $(DEV_PACKAGES); 
+	@sudo pacman -S $(HOUSE_PACKAGES);
 	@sudo pacman -S $(FONT_PACKAGES);
 	@sudo pacman -S $(APP_PACKAGES);
 
